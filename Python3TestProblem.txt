@@ -1,0 +1,473 @@
+#Write a function called count_types. count_types
+#should take as input a single string, and return a
+#dictionary. In the dictionary, the keys should be
+#types of characters, and the values should be the
+#number of times each type of character appeared in
+#the string.
+#
+#The types of characters that should be handled (and
+#thus, the keys in the dictionary) are:
+#
+# - upper: the count of upper-case or capital letters
+# - lower: the count of lower-case letters
+# - punctuation: the count of punctuation characters.
+#   You may assume this is limited to these punctuation
+#   characters: !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+# - space: the count of spaces
+# - numeral: the count of numerals, 0123456789
+#
+#Note, however, that any type of character that does
+#NOT appear in the string should not be in the dictionary
+#at all.
+#
+#For example:
+#
+#count_characters("aabbccc") -> 
+# {"lower": 7}
+#count_characters("ABC 123 doe ray me!") -> 
+# {"upper": 3, "lower": 8, "punctuation": 1, "space": 4, "numeral": 3}
+#
+#Because the first string has only lower-case letters,
+#"lower" is the only key in the dictionary.
+#
+#HINT: If you're sing the ord() function, capitals of
+#ordinals between 65 and 90; lower-case letters have
+#ordinals between 97 and 122; numerals are between 48
+#and 57; spaces are 32; all other numbers between 33
+#and 126 are punctuations, and no character will have
+#an ordinal outside that range.
+
+
+#Write your function here!
+def count_types(myString):
+    ordValue = 0
+    myDict = {"space":0,"numeral":0, "lower":0, "upper":0,"punctuation":0}
+    count = 0
+    for char in myString:
+        if char == " ":
+            myDict["space"] += 1
+        elif char in "0123456789":
+            myDict["numeral"] += 1
+        elif char.islower():
+            myDict["lower"] += 1
+        elif char.isupper():
+            myDict["upper"] += 1
+        elif char in "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~":
+            myDict["punctuation"] += 1
+        
+    if myDict["space"] == 0:
+         del myDict["space"]
+    if myDict["numeral"] == 0:
+         del myDict["numeral"]
+    if myDict["lower"] == 0:
+         del myDict["lower"]
+    if myDict["upper"] == 0:
+         del myDict["upper"]
+    if myDict["punctuation"] == 0:
+         del myDict["punctuation"]
+    return myDict
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print (although the order of the keys may vary):
+#
+#{"lower": 7}
+#{"upper": 3, "lower": 8, "punctuation": 1, "space": 4, "numeral": 3}
+print(count_types("aabbccc"))
+print(count_types("ABC 123 doe ray me!"))
+
+=============================================================================  2
+#Write a function called write_movie_info. write_movie_info
+#will take as input two parameters: a string and a
+#dictionary.
+#
+#The string will represent the filename to which to write.
+#
+#The keys in the dictionary will be strings representing
+#movie titles. The values in the dictionary will be lists
+#of strings representing performers in the corresponding
+#movie.
+#
+#write_movie_info should write the list of movies to the file
+#given by the filename using the following format:
+#
+# Title: Actor 1, Actor 2, Actor 3, etc.
+#
+#The movies and the actor names should be sorted
+#alphabetically.
+#
+#So, for this dictionary:
+#
+# {"Chocolat": ["Juliette Binoche", "Judi Dench", "Johnny Depp", "Alfred Molina"],
+#  "Skyfall": ["Judi Dench", "Daniel Craig", "Javier Bardem", "Naomie Harris"]}
+#
+#The file printed would look like this:
+#
+# Chocolat: Alfred Molina, Johnny Depp, Judi Dench, Juliette Binoche
+# Skyfall: Daniel Craig, Javier Bardem, Judi Dench, Naomie Harris
+#
+#HINT: the keys() method of a Dictionary will return a list
+#of the dictionary's keys. So, to get a sorted list of a_dict's
+#keys, you could call key_list = a_dict.keys(), then call 
+#key_list.sort().
+
+
+#Write your function here!
+def write_movie_info(filename, a_dictionery):
+    content = open(filename, 'w')
+    holder = []
+    movieholder = []
+    result_dict = {}
+    myTuple = ()
+    
+    for (movie, actor) in a_dictionery.items():
+        movieholder.append(movie)
+        for item in actor:
+            holder.append(item)
+        holder.sort()
+        result_dict[movie] = holder    
+    movieholder.sort()
+    holder.sort()
+    myTuple = (movieholder, holder) 
+    print(myTuple)
+    test = ""     
+    for value in result_dict.items():
+        test += str(value)
+        #print(test)
+    test.replace('(','')
+    print()
+        
+    #print(test)
+    #print(actorholder)
+
+    print(a_dictionery, file = content)
+    content.close()
+        
+        
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print nothing -- however, it should write the same contents
+#as Sample.txt to Test.txt.
+movies = {"Chocolat": ["Juliette Binoche", "Judi Dench", "Johnny Depp", "Alfred Molina"], "Skyfall": ["Judi Dench", "Daniel Craig", "Javier Bardem", "Naomie Harris"]}
+write_movie_info("Test.txt", movies)
+
+======================================================================================== 3
+#Imagine you're writing the code for an onboard vehicle
+#monitoring system. One thing the system does is measure
+#tire pressure. It does this by taking a measurement every
+#10 seconds. However, lots of environmental conditions can
+#lead to intermittent bad readings: if it takes a reading
+#as a car goes over a bump, for example, it will be way
+#higher than it would have been otherwise. So, the system
+#needs to know to ignore these ratings, as well as only
+#process the more recent measurements. Let's tell the system
+#that the only valid tire pressures are between 15 and 55.
+#
+#Write a function called tire_pressure. tire_pressure
+#should have one parameter, a list of integers. The list
+#represents a series of tire pressure measurements over the
+#past several minutes.
+#
+#tire_pressure should return the average of the last 5
+#measurements that are greater than or equal to 15 and less
+#than or equal to 55. Round the result to 1 decimal place
+#(you can use round(some_float, 1) to round to 1 decimal
+#place).
+#
+#For example, if the list of measurements was this:
+#
+# [34, 34, 64, 34, 5, 5, 34, 34, 35, 35, 35, 65, 60, 35, 12, 35]
+#
+#tire_pressure would return 35.0: the last five measurements
+#in range are all 35. You may assume there will be at least
+#5 measurements in the proper range.
+
+
+#Add your code here!
+def tire_pressure(a_list):
+    total = 0
+    avg = 0
+    count = 0
+    for value in range(len(a_list)-1,0,-1):
+        if a_list[value] >= 15 and a_list[value] <= 55:
+            total += a_list[value]
+            count += 1
+            if count == 5:
+               break
+    return round(total / 5, 1) 
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 35.0
+a_list = [34, 34, 64, 34, 5, 5, 34, 34, 35, 35, 35, 65, 60, 35, 12, 35]
+print(tire_pressure(a_list))
+
+=============================================================================  4
+#Write a function called find_median. find_median
+#should take as input a string representing a filename.
+#The file corresponding to that filename will be a list
+#of integers, one integer per line. find_median should
+#return the median of the numbers in the file.
+#
+#If there is an odd number of values in the file, then
+#find_median will return the middle value from the numbers
+#in the file after they're sorted.
+#
+#If there is an even number of values in the file, then
+#find_median should return the average of the two middle
+#values after they're sorted.
+#
+#For example, in the dropdown in the top left you'll find a
+#file named FindMedianInput.txt. There are 19 numbers in
+#this file, so the median is the value at index 10 after
+#sorting them: 16.
+#
+#You may assume that all lines in the file will contain a
+#positive integer (greater than 0). There may be duplicates.
+
+
+#Write your function here!
+def find_median(filename):
+    a_list = open(filename, 'r')
+    total = a_list.readlines()
+    avg = 0
+    count = 0
+    for value in range(len(a_list)):
+        count += 1
+        print(count)
+        if total % 2 == 0:
+            return ((a_list[int(total // 2) + 1] + a_list[int(total // 2)]) / 2)
+        else:
+            return a_list[int(total // 2)]
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 16
+print(find_median("FindMedianInput.txt"))
+
+===============================================================================  5
+#Write a function called next_fib. next_fib should take
+#have two parameters: a list of integers and a single integer.
+#For this description, we'll call the single integer n.
+#
+#next_fib should modify the list to add the next n pseudo-
+#Fibonacci numbers to the end of the sequence. A pseudo-
+#Fibonacci number is the sum of the previous two numbers in
+#the sequence, but in our case, the previous two numbers may
+#not be the original numbers from the Fibonacci sequence.
+#
+#For example, if the original list given was:
+#
+# a_list = [5, 5, 10, 15, 25, 40, 65]
+#
+# Then next_fib(a_list, 3) would return:
+#       [5, 5, 10, 15, 25, 40, 65, 105, 170, 275]
+#
+#All the original numbers in the list are still there, and
+#three new ones have been added.
+#
+#You may assume the list parameter will always have at least
+#two numbers.
+#
+#HINT: Python gets mad if you try to change a list while
+#iterating over it with a for-each loop. You'll have to get
+#clever with a for or while loop to do this!
+
+
+#Add your code here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print:
+#[5, 5, 10, 15, 25, 40, 65, 105, 170, 275] 
+a_list = [5, 5, 10, 15, 25, 40, 65]
+print(next_fib(a_list, 3))
+
+================================================================================  6
+#Write a function called abstract_names. abstract_names
+#should have one parameter: a list of lists. Each list will
+#be a list of strings, each with a first name and a last
+#name, and each with the same first name.
+#
+#For example, this could be one list of lists your function
+#might receive:
+#
+# [["David Joyner", "David Tennant", "David Beckham"],
+#  ["Ananya Birla", "Ananya Agarwal", "Ananya Chatterjee", "Ananya Roy"],
+#  ["Inés Sainz", "Inés Suarez", "Inés Melchor"]]
+#
+#abstract_names should return a dictionary. The keys to the
+#dictionary should be the first names, and the values should
+#be lists of the associated last names. The last names should
+#be sorted alphabetically.
+#
+#For example, with the list above, the dictionary returned by
+#abstract_names would be:
+#
+# {"David": ["Beckham", "Joyner", "Tennant"],
+#  "Ananya": ["Agarwal", "Birla", "Chatterjee", "Roy"],
+#  "Inés": ["Melchor", "Sainz", "Suarez"]}
+
+
+#Write your function here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print (although the order of the keys may vary):
+#
+#{"David": ["Beckham", "Joyner", "Tennant"], "Ananya": ["Agarwal", "Birla", "Chatterjee", "Roy"], "Inés": ["Melchor", "Sainz", "Suarez"]}
+names = [["David Joyner", "David Tennant", "David Beckham"], ["Ananya Birla", "Ananya Agarwal", "Ananya Chatterjee", "Ananya Roy"], ["Ines Sainz", "Ines Suarez", "Ines Melchor"]]
+print(abstract_names(names))
+
+============================================================================  7
+#APA citation style cites author names like this:
+#
+#  Last, F., Joyner, D., & Burdell, G.
+#
+#Note the following:
+#
+# - Each individual name is listed as the last name, then a
+#   comma, then the first initial, then a period.
+# - The names are separated by commas, including the last
+#   two.
+# - There is also an ampersand and additional space before
+#   the final name.
+# - There is no space or comma following the last period.
+#
+#Write a function called names_to_apa. names_to_apa should
+#take as input one string, and return a reformatted string
+#according to the style given above. You can assume that
+#the input string will be of the following format:
+#
+#  First Last, David Joyner, and George Burdell
+#
+#You may assume the following:
+#
+# - There will be at least three names, with "and" before
+#   the last name.
+# - Each name will have exactly two words.
+# - There will be commas between each pair of names.
+# - The word 'and' will precede the last name.
+# - The names will only be letters (no punctuation, special
+#   characters, etc.), and first and last name will both be
+#   capitalized.
+
+
+#Write your function below!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: Last, F., Joyner, D., & Burdell, G.
+print(names_to_apa("First Last, David Joyner, and George Burdell"))
+
+===============================================================================  8
+#The game Mancala is one of the oldest games in recorded
+#history. You can read more about it here:
+#https://www.thesprucecrafts.com/how-to-play-mancala-409424
+#
+#For this problem, though, you don't need to know how to
+#play the game. All you need to know is the board layout
+#and the conditions for winning.
+#
+#A Mancala board is made of two rows of 6 cups, with two
+#bigger cups at the ends. Each cup holds some number of
+#stones or chips. For our purposes, though, we'll include
+#the bigger cups at the end of the corresponding rows.
+#
+#So, for us, a Mancala board is represented as a
+#2-dimensional list of integers. Each item in the lists
+#represents a cup, and the number represents how many
+#stones are currently in that cup. For example, this
+#could be one board:
+#
+# [[5, 3, 0, 2, 6, 8, 1],
+#  [1, 6, 8, 0, 4, 1, 4]]
+#
+#With this board representation, the game is over when
+#every cup is empty except the top left and the bottom
+#right. When the game is over, whoever has more stones
+#in their cup wins: if the top left has more stones, the
+#top player wins. If the bottom right has more stones,
+#the bottom player wins.
+#
+#Write a function called check_winner. check_winner takes
+#as a 2-dimensional list representing a game board. You
+#may assume list will always have two lists, each with
+#7 items, corresponding to the board structure shown
+#above.
+#
+#Your function should return one of four strings
+#depending on the values of the list:
+#
+# - If the game is not over (that is, there are stones
+#   in any bucket except for the top-left or bottom-
+#   right), return "Keep playing!"
+# - If the game is over and the top player wins (that is,
+#   there are more stones in top-left than bottom-right),
+#   return "Player 1 wins!"
+# - If the game is over and the bottom player wins (that
+#   is, there are more stones in the bottom-right than
+#   the top-left), return "Player 2 wins!"
+# - If the game is over but the score is tied (that is,
+#   there is an equal number of stones in the top-left
+#   and bottom-right), return "Draw!"
+
+
+#Write your function here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print:
+#Keep playing!
+#Player 1 wins!
+#Player 2 wins!
+#Draw!
+keep_playing = [[5, 3, 0, 2, 6, 8, 1], [1, 6, 8, 0, 4, 1, 4]]
+player1_wins = [[27, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 21]]
+player2_wins = [[16, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 32]]
+game_is_tied = [[24, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 24]]
+print(check_winner(keep_playing))
+print(check_winner(player1_wins))
+print(check_winner(player2_wins))
+print(check_winner(game_is_tied))
+
+===============================================================================  9
