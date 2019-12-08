@@ -1,0 +1,329 @@
+mystery_string_1 = "17"
+mystery_string_2 = "9"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#mystery_string_1 and mystery_string_2 are each strings
+#representing numbers. Write some code below that will find
+#the numeric sum of the numbers represented by these strings.
+#For example, if the strings were "17" and "9", your answer
+#would be 26.
+#
+#Then, print out the result as part of a sentence of this
+#form: "The sum of the two strings is 26". (Do not include
+#quotes in your output, only print the message inside the
+#quotes.)
+#
+#You may assume that both strings will hold integers.
+
+
+#Add your code here!
+sum_value = int(mystery_string_1) + int(mystery_string_2);
+
+print("The sum of the two strings is",sum_value );
+
+====================================================  2
+hot = True
+cold = False
+morning = True
+evening = False
+night = False
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Write a program that will recommend a meal based on the
+#current weather and time of day. Specifically, the program
+#should recommend:
+#
+# - soup if it's cold and either evening or night
+# - a biscuit if it's morning and cold
+# - cereal if it's morning and hot, or whenever the time is
+#   night
+# - pizza whenever it's either evening or night
+#
+#Write some code below that will print four lines, one for
+#each of the four meals. The lines should look like this:
+#
+#Soup: False
+#Biscuit: False
+#Cereal: True
+#Pizza: False
+#
+#The values (True and False) will differ based on the
+#values assigned to hot, cold, morning, evening, and night
+#at the start of the program.
+
+
+#Add your code here!
+
+print("Soup:",cold and evening or night)
+print("Biscuit:", morning and cold)
+print("Cereal:", hot and morning or evening or night)
+print("Pizza:", evening or night)
+
+
+======================================================  3
+current_hour = 5
+time_of_day = "PM"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+#
+#Write some code that will print the following message based
+#on the values of current_hour and time_of_day:
+#
+#The current time is 5PM: Cuckoo!Cuckoo!Cuckoo!Cuckoo!Cuckoo!
+#
+#The values of current_hour and time_of_day should replace
+#"5PM", and "Cuckcoo!" should be printed current_hour times.
+#
+#For example, if current_hour was 2 and time_of_day was "AM",
+#this would print:
+#
+#The current time is 2AM: Cuckoo!Cuckoo!
+
+
+#Add your code here!
+print("The current time is "+ (str(current_hour) + time_of_day)+" "+ current_hour * "Cuckcoo!")
+
+====================================================   4
+cost = 150000
+rate = 0.0415
+years = 15
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#When taking out a mortgage (a type of loan) for a house, the
+#mortgage is defined by three variables: the total cost of the
+#house, the interest rate at which you will pay back the
+#mortgage, and how many months you have to pay back the
+#mortgage.
+#
+#The formula to find the total amount of money that will be
+#paid over that time is:
+#
+#  Cost * Number of Months * Monthly Rate /
+#  1 - ((1 + Monthly Rate) ^ -Number of Months))
+#
+#Note that both time and rate are based on months: to find the
+#monhtly rate, divide the annual rate by 12. To find the number
+#of months, multiply the number of years by 12.
+#
+#Write some code that prints out a sentence like the following
+#based on the original cost, interest rate, and number of years
+#given above:
+#
+# The total cost of the house will be $201751.36
+#
+#You should round the total cost to two decimal places. You can
+#do this with this line, assuming the actual value of the
+#mortgage is stored in final_cost: final_cost = round(final_cost, 2)
+
+
+#Add your code here!
+print(cost * (years*12) * rate / 1 - ((1 + rate) ^ - (years*12))) 
+
+=============================================================  5
+number = 215
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+#
+#The number above is given in base 10. Let's convert it to
+#base 2 and print it in binary. For example, 215 can be written
+#in binary as 11010111.
+#
+#Each digit of that string corresponds to a power of 2. The far
+#left digit represents 128, then 64, then 32, then 16, then 8,
+#then 4, then 2, and then finally 1 at the far right.
+#
+#To convert the number to binary, first check to see if it is
+#greater than or equal to 128. If it is, your first digit is 1.
+#If not, your first digit is 0. If the number was greater than
+#128, subtract 128 (because the 128 is captured by the first
+#digit of the string).
+#
+#Then, repeat that process for 64, 32, 16, 8, 4, 2, and 1.
+#
+#For example:
+#
+#215 is >= 128: 1
+#87 is >= 64: 11
+#23 is not >= 32: 110
+#23 is >= 16: 1101
+#7 is not >= 8: 11010
+#7 is >= 4: 110101
+#3 is >= 2: 1101011
+#1 is >= 1: 11010111
+#
+#Note that although we use 'if' a lot to describe this problem,
+#this can be done entirely with floor division and modulus.
+#Remember, if you convert a boolean to an integer, True becomes
+#1 and False becomes 0.
+#
+#Note that we always work with binary in 8-bit chunks: the
+#number 7 would be 00000111, not just 111. That's because inside
+#the computer, 8 1s and 0s make a byte, which is the smallest
+#practical unit of storage (rarely are bits used outside 8-bit
+#bytes).
+#
+#Print the string that results from this conversion.
+
+
+#Add your code here!
+
+binary_number = ""
+
+binary_number += str(int(number>=128))
+number -=int(number>=128) * 128
+    
+binary_number += str(int(number >= 64))
+number -=int(number>=64) * 64
+
+binary_number += str(int(number >= 32))
+number -=int(number>=32) * 32
+
+binary_number += str(int(number>=16))
+number -=int(number>=16) * 16
+
+binary_number += str(int(number>=8))
+number -=int(number>=8) * 8
+
+binary_number += str(int(number>=4))
+number -=int(number>=4) * 4
+
+binary_number += str(int(number>=2))
+number -=int(number>=2) * 2
+
+binary_number += str(int(number>=1))
+number -=int(number>=1) * 1
+
+print(binary_number)
+
+=====================================================  6
+message = "lol"
+punct = "!"
+num = 3
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Using the values of message, punct, and num, print
+#a string that looks like the one below if message = "lol",
+#punct = "!", and num = 3:
+#
+# !!!lol!!!lol!!!lol!!!
+#
+#Specifically, it should start by printing punct num
+#times, then print message, repeat that entire process
+#num times, and then print punct num times again.
+#
+#Here are a couple other examples:
+#
+# message = "bbl", punct = ":", num = 1 -> :bbl:
+# message = "bbq", punct = "?", num = 2 -> ??bbq??bbq??
+# message = "brb", punct = ".", num = 4 -> ....brb....brb....brb....brb....
+
+
+#Add your code below!
+print(str(num *(num * (punct) + message)+punct*num))
+
+=======================================================  7
+num = 13
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Write some code that calculates the square and the square root
+#of the number given above. Then, it should print the root the
+#square number of times. If the square root is a decimal,
+#round it down (you can do this by converting the decimal to
+#an integer: Python will automatically round it down).
+#
+#For example, if num is 4, then your code would print:
+#
+# 2222222222222222
+#
+#That's 2 16 times. 4 squared is 16, the square root of 4 is 2,
+#and so it prints 2 16 times.
+#
+#For another example: if num is 13, then 13 squared is 169, and
+#the square root of 13 is ~3.6. 3.6 rounds down to 3. So, it would
+#print 3 169 times.
+
+
+#Add your code here!
+import math
+
+print(str(int(math.sqrt(num)))*(num*num))
+
+===============================================  8
+current_hour = 12
+current_minute = 37
+current_section = "AM"
+due_hour = 9
+due_minute = 0
+due_section = "AM"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Given the current time and deadline time represented by the
+#variables above, determine if an assignment is still eligible
+#for submission. An assignment is eligible if the time
+#represented by current_hour, current_minute, and
+#current_section is before the time represented by due_hour,
+#due_minute, and due_section.
+
+
+#Add your code here!
+
+print( (current_hour <= due_hour or current_minute <= due_minute) and (due_section == current_section) or ( current_hour >= due_hour or current_minute >= due_minute) and (due_section =="AM" and current_section == "PM") )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
