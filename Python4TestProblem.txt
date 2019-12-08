@@ -1,0 +1,1262 @@
+#To help streamline certain development activities, ISO
+#(the International Organization for Standardization) provides
+#a table of codes, short abbreviations, and long abbreviations
+#for every nation in the world. We have created a class called
+#Nation to structure this information. The Nation class
+#contains 6 attributes:
+#
+# - short_name: The short, common form of a country's name,
+#   such as "Albania".
+# - long_name: The long, official form of a country's name,
+#   such as "Republic of Albania".
+# - iso_code: The numeric code corresponding to the nation,
+#   such as 8.
+# - iso_short: The short abbreviation corresponding to the
+#   nation, such as AL.
+# - iso_long: The long abbreviation corresponding to the
+#   nation, such as ALB.
+# - capital: The capital city, such as Tirana.
+#
+#To let you debug, we've provided you the class here. Your
+#code will have access to this.
+class Nation:
+    def __init__(self, short_name, long_name, iso_code, iso_short, iso_long, capital):
+        self.short_name = short_name
+        self.long_name = long_name
+        self.iso_code = iso_code
+        self.iso_short = iso_short
+        self.iso_long = iso_long
+        self.capital = capital
+        
+        
+  
+    
+    
+
+#Write a function called to_dictionaries that will take as
+#input a list of instances of this class. It should return a
+#dictionary of dictionaries. The keys for the dictionaries
+#should be the short names of the nations. The values should
+#be additional dictionaries, each with five keys: long_name,
+#iso_code, iso_short, iso_long, and capital.
+#
+#For example, if we created two instances of Nation like this:
+#new_nation_1 = Nation("Albania", "Republic of Albania", 8, "AL", "ALB", "Tirana")
+#new_nation_2 = Nation("Angola", "Republic of Angola", 24, "AO", "AGO", "Luanda")
+#
+#...then made them into a list like this:
+#nation_list = [new_nation_1, new_nation_2]
+#
+#...then called the function:
+#new_dict = to_dictionaries(nation_list)
+#
+#...then we would get this dictionary in return:
+#{"Albania": {"long_name": "Republic of Albania", "iso_code": 8, "iso_short": "AL", "iso_long": "ALB", "capital": "Tirana"},
+# "Angola": {"long_name": "Republic of Angola", "iso_code": 24, "iso_short": "AO", "iso_long": "AGO", "capital": "Luanda"}}
+#
+#HINT: This problem looks long, but don't overcomplicate
+#it. Each part is something you've done lots of times:
+#iterate through a list of instances, get the key, create
+#a new dictionary, add the other key-values one-by-one,
+#and return the overall dictionary.
+
+
+#Add your code here!
+def to_dictionaries(nation):
+    myDict = {}
+    for x in range(len(nation)):
+        myDict[nation[x].short_name] = { 'long_name': nation[x].long_name, 'iso_long': nation[x].iso_long, 'capital': nation[x].capital, 'iso_short': nation[x].iso_short, 'iso_code': nation[x].iso_code}
+    return myDict  
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print (although the order of the keys may vary) the
+#sample dictionaries shown in the directions.
+new_nation_1 = Nation("Albania", "Republic of Albania", 8, "AL", "ALB", "Tirana")
+new_nation_2 = Nation("Angola", "Republic of Angola", 24, "AO", "AGO", "Luanda")
+nation_list = [new_nation_1, new_nation_2]
+print(to_dictionaries(nation_list))
+
+==========================================================================================  2
+#A common meme on social media is the name generator. These
+#are usually images where they map letters, months, days,
+#etc. to parts of fictional names, and then based on your
+#own name, birthday, etc., you determine your own.
+#
+#For example, here's one such image for "What's your
+#superhero name?": https://i.imgur.com/TogK8id.png
+#
+#Write a function called generate_name. generate_name should
+#have two parameters, both strings. The first string will
+#represent a filename from which to read name parts. The
+#second string will represent an individual person's name,
+#which will always be a first and last name separate by a
+#space.
+#
+#The file with always contain 52 lines. The first 26 lines
+#are the words that map to the letters A through Z in order
+#for the person's first name, and the last 26 lines are the
+#words that map to the letters A through Z in order for the
+#person's last name.
+#
+#Your function should return the person's name according to
+#the names in the file.
+#
+#For example, take a look at the names in heronames.txt
+#(look in the drop-down in the top left). If we were to call
+#generate_name("heronames.txt", "Addison Zook"), then the
+#function would return "Captain Hawk": Line 1 would map to
+#"A", which is the first letter of Addison's first name, and
+#line 52 would map to "Z", which is the first letter of
+#Addison's last name. The contents of those lines are
+#"Captain" and "Hawk", so the function returns "Captain Hawk".
+#
+#You should assume the contents of the file will change when
+#the autograder runs your code. You should NOT assume
+#that every name will appear only once. You may assume that
+#both the first and last name will always be capitalized.
+#
+#HINT: Use chr() to convert an integer to a character.
+#chr(65) returns "A", chr(90) returns "Z".
+
+
+#Add your code here!
+def generate_name(filename, fullname):
+    content = open(filename, 'r')
+    data = content.read()
+    words = data.split('\n')
+    Firstname = ""
+    Lastname = ""
+    count = 0
+    
+    fullname = fullname.split(' ')
+    Firstname = fullname[0]
+    Lastname = fullname[1]
+
+    Firstname = words[ord(Firstname[0]) - 65]
+    Lastname = words[ord(Lastname[0]) - 39]
+    return Firstname + " " + Lastname
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: Captain Hawk, Doctor Yellow Jacket, and Moon Moon,
+#each on their own line.
+print(generate_name("heronames.txt", "Addison Zook"))
+print(generate_name("heronames.txt", "Uma Irwin"))
+print(generate_name("heronames.txt", "David Joyner"))
+
+=============================================================================  3
+#-----------------------------------------------------------
+#In this problem, we're going to explore a little of how
+#game AI works. We'll do this with a simple problem: building
+#an agent to play the popular card game Blackjack.
+#
+#Blackjack is a card game played with a standard 52-card
+#deck. Suits do not matter in Blackjack, and so we'll just
+#use letters to indicate the different cards: A, 2, 3, 4, 5,
+#6, 7, 8, 9, 10, J, Q, K.
+#
+#The goal of Blackjack is to get as close to 21 points as
+#possible without going higher. Each of the thirteen cards
+#above has a point total attached: the numerals are worth
+#their given value (2 points for 2, 7 points for 7, etc.).
+#J, Q, and K are worth 10 points. A is worth either 1 or 11
+#points, whichever is better for the player.
+#
+#At any time, the player has some number of cards in their
+#hand. They must then make a decision of whether to Hit or
+#Stay. Hit means they request an additional card, Stay means
+#they stop with their current total. Players generally try
+#to Hit until it is likely that another card will push them
+#over 21. For example, if a player has a 5 and a 7, there is
+#a relatively low chance that another card would push them
+#over 21 (only J, Q, and K would do so, since 12 + 10 = 22).
+#On the other hand, if they have a 5, a 6, and a 7, they will
+#likely stay because any card above 3 will push them over 21
+#points.
+#
+#The specific goal in Blackjack is to get closer to 21 than
+#the dealer. Dealers must follow a set of prescribed rules
+#for when to Hit and Stay. These are the rules we'll use for
+#our Blackjack-playing AI.
+#
+#The rules are:
+#
+# - The dealer must Hit if their total is below 17.
+# - The dealer must Stay as soon as their total is 17 or
+#   higher.
+# - An Ace (A) should be counted as 11 if it puts the
+#   dealer between 17 and 21 points. If it puts them over
+#   21, though, it should be counted as 1.
+#
+#For example, imagine the dealer's first cards are A and 3.
+#Their point total is either 4 or 14, both below 17, so they
+#Hit. The next card is a 9. If we count the A as 11, then
+#their total is now 23 (11 + 3 + 9), and so we count the
+#A as 1. Their total is 13, and so they Hit again. The next
+#card is a 7, so their total is 20, so they Stay.
+#
+#Write a function called next_move. next_move should have
+#one parameter, a string. Each character of the string will
+#be a card in the dealer's current hand, such as "AK" or
+#"175". The function should return one of three strings:
+#
+# - "Hit" if the dealer should take another card.
+# - "Stay" if the dealer should not take another card.
+# - "Bust" if the sum is already over 21.
+#
+#Remember, your function is only responsible for playing
+#one move at a time. Take in a string representing the
+#current hand, return "Hit", "Stay", or "Bust".
+
+
+#Add your code here!
+def next_move(a_string):
+    tally = 0
+    for x in a_string:
+       if x == 'A':
+          if tally >= 17:
+             tally += 1
+          else:
+             tally += 11
+       elif x in "JKQ":
+            tally += 10
+       elif type(int(x)) == int:
+            tally += int(x)
+       
+        
+    if tally < 17:
+        return 'Hit'
+    elif tally >= 17 and tally < 21:
+      if tally > 17 and "A" in a_string:
+         tally -= 10 
+         return 'Stay'
+      else:
+          return 'Stay'
+    elif tally > 21:
+        if tally > 17 and "A" in a_string:
+           tally -= 10 
+        if tally < 17:
+            return "Hit"
+        elif tally > 17 and tally < 21:
+            return "Stay"
+        else:
+            return 'Bust'
+    
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: Hit, Hit, Stay, and Bust.
+print(next_move("07"))
+#print(next_move("A39"))
+#print(next_move("A397"))
+#print(next_move("A397K"))
+
+==============================================================================  4
+#Earlier in the course, you implemented a function that could
+#find if someone had won a particular game of either tic-tac-
+#toe or mancala based on a 2D list or tuple representing the
+#current game board.
+#
+#In this problem, you'll do the same thing, but for the game
+#Connect 4. Write a function called check_winner which takes
+#as input a 2D list. It should return "X" if there are four
+#adjacent "X" values anywhere in the list (row, column,
+#diagonal); "O" if there are four adjacent "O" values
+#anywhere in the list; and None if there are neither.
+#
+#Here are the ways Connect-4 is different from tic-tac-toe:
+#
+# - Connect-4 is played with 6 rows and 7 columns, not 3
+#   rows and 3 columns.
+# - You must have 4 in a row (or column or diagonal) to win
+#   instead of 3.
+# - You may only place pieces in the bottom-most empty
+#   space in a column (e.g. you "drop" the pieces in the
+#   column and they fall to the first empty spot). Note,
+#   though, that this shouldn't affect your reasoning.
+#
+#To keep things simple, we'll still use "X" and "O" to
+#represent the players, and None to represent empty spots.
+#You may assume there will be only one winner per board,
+#no characters besides "X", "O", and None, and you don't
+#have to worry about whether the board is actually a
+#valid game of Connect 4.
+#
+#Hints:
+# - Don't forget both kinds of diagonals, top-left to
+#   bottom-right and bottom-left to top-right.
+# - This board is too large to check every possible place
+#   for a winner: there are 69 places a player could win.
+# - Remember, if you put a negative index in a list,
+#   Python "wraps around" and checks the last value. You
+#   may have to control for this.
+
+
+#Write your function here!
+def check_winner(mylist):
+    values = []
+    count = 0
+    countxrow = 0
+    countxcol = ""
+    countxdiag = 0
+    countO = 0
+    myString = ""
+    countycol = ""
+    
+    s1 = ""
+    s2 = ""
+    s3 = ""
+    s4 = ""
+    s5 = ""
+    s6 = ""
+    
+    for x in mylist:
+        for d in x:
+           if type(d) == str :
+               myString += d
+           else:
+                myString += " "
+        if "XXXX" in myString:
+            return 'X'
+        elif 'OOOO' in myString:
+            return 'O'
+        
+        if type(x[count]) == str:
+            countxcol += x[count]
+            count += 1
+            if "XXXX" in countxcol:
+                return 'X'
+            elif 'OOOO' in countxcol:
+                return 'O'
+            
+        isDiagnal(x)
+        
+        isDiagnaly(y)
+           
+            
+            
+        if type(x[0]) == str:
+             s1 += x[0]
+        if type(x[1]) == str:
+             s2 += x[1]
+        if type(x[2]) == str:
+             s3 += x[2]
+        if type(x[3]) == str:
+             s4 += x[3]
+        if type(x[4]) == str:
+             s5 += x[4]
+        if type(x[5]) == str:
+             s6 += x[5]
+        
+            
+            
+        if "XXXX" in s1:
+             return 'X'
+        elif 'OOOO' in s1:
+             return 'O'
+            
+        if "XXXX" in s2:
+             return 'X'
+        elif 'OOOO' in s2:
+             return 'O'
+            
+        if "XXXX" in s3:
+             return 'X'
+        elif 'OOOO' in s3:
+             return 'O'
+            
+        if "XXXX" in s4:
+             return 'X'
+        elif 'OOOO' in s4:
+             return 'O'
+            
+            
+        if "XXXX" in s5:
+             return 'X'
+        elif 'OOOO' in s5:
+             return 'O'
+            
+        if "XXXX" in s6:
+             return 'X'
+        elif 'OOOO' in s6:
+             return 'O'
+        else:
+             return None
+                
+
+                
+def isDiagnal(a_tuple):
+    a_string = ""
+    index = 0
+    for a_row in a_tuple:
+        if type(a_row[index]) == str:
+            a_string += a_row[index]
+            index += 1
+            if 'XXXX' in a_string:
+                return 'X'
+            elif 'OOOO' in a_string:
+                return 'O'
+        
+        
+def isDiagnaly(a_tuple):
+    a_string = ""
+    index = 6
+    for a_row in a_tuple:
+        if type(a_row[index]) == str:
+            a_string += a_row[index]
+            index -= 1
+            if 'XXXX' in a_string:
+                return 'X'
+            elif 'OOOO' in a_string:
+                return 'O'
+        
+        
+                
+                
+
+#The code below tests your function on three Connect-4
+#boards. Remember, the line breaks are not needed to create
+#a 2D tuple; they're used here just for readability.
+xwins = ((None, None, None, None, None, None, None), 
+         (None, None, None, None, None, None, None),
+         (None, None, None, None, 'X',  None, None), 
+         (None, None, None, 'X',  'O',  'O',  None),
+         (None, 'O',  'X',  'X',  'O',  'X',  None), 
+         ('O',  'X',  'O',  'O',  'O',  'X',  'X'))
+
+owins = (("O", None, "O", None, None, "X", None),
+         ("O", "O", "O", None, "X", None, None),
+         ("O" , "O" , "O" , "X" , None, None, None),
+         ("O" , "X" , "O" , "O" , None, None, None),
+         ("X" , "X" , "O" , "O" , "O" , None, None),
+         ("X" , "O" , "O" , "X" , "O" , "O", None))
+
+nowins =(('X', 'X', None, None, None, None, None), 
+         ('O', 'O', None, None, None, None, None), 
+         ('O', 'X', 'O', 'O', None, 'O', 'O'), 
+         ('O', 'X', 'X', 'X', None, 'X', 'X'), 
+         ('X', 'X', 'X', 'O', 'X', 'X', 'O'), 
+         ('X', 'O', 'O', 'X', 'O', 'X', 'O'))
+         
+print(check_winner(xwins))
+#print(check_winner(owins))
+#print(check_winner(nowins))
+
+========================================================================  5
+#A common problem in academic settings is plagiarism
+#detection. Fortunately, software can make this pretty easy!
+#
+#In this problem, you'll be given two files with text in
+#them. Write a function called check_plagiarism with two
+#parameters, each representing a filename. The function
+#should find if there are any instances of 5 or more
+#consecutive words appearing in both files. If there are,
+#return the longest such string of words (in terms of number
+#of words, not length of the string). If there are not,
+#return the boolean False.
+#
+#For simplicity, the files will be lower-case text and spaces
+#only: there will be no punctuation, upper-case text, or
+#line breaks.
+#
+#We've given you three files to experiment with. file_1.txt
+#and file_2.txt share a series of 5 words: we would expect
+#check_plagiarism("file_1.txt", "file_2.txt") to return the
+#string "if i go crazy then". file_1.txt and file_3.txt
+#share two series of 5 words, and one series of 11 words:
+#we would expect check_plagiarism("file_1.txt", "file_3.txt")
+#to return the string "i left my body lying somewhere in the
+#sands of time". file_2.txt and file_3.txt do not share any
+#text, so we would expect check_plagiarism("file_2.txt",
+#"file_3.txt") to return the boolean False.
+#
+#Be careful: there are a lot of ways to do this problem, but
+#some would be massively time- or memory-intensive. If you
+#get a MemoryError, it means that your solution requires
+#storing too much in memory for the code to ever run to
+#completion. If you get a message that says "KILLED", it
+#means your solution takes too long to run.
+
+
+#Add your code here!
+def check_plagiarism(file1, file2):
+    dataOne = open(file1, 'r')
+    dataTwo = open(file2, 'r')
+    
+    wordsOne = dataOne.read()
+    wordsTwo = dataTwo.read()
+    
+    wordOne = wordsOne.split()
+    wordTwo = wordsTwo.split()
+    result = []
+    
+    for word1 in wordTwo:
+        if word1 in wordOne:
+           result.append(word1)
+    dataOne.close()
+    dataTwo.close()
+    return result
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print:
+#if i go crazy then
+#i left my body lying somewhere in the sands of time
+#False
+print(check_plagiarism("file_1.txt", "file_2.txt"))
+print(check_plagiarism("file_1.txt", "file_3.txt"))
+print(check_plagiarism("file_2.txt", "file_3.txt"))
+
+============================================================================  6
+#Let's try out a sort of data analysis-style problem. In
+#this problem, you're going to have access to a data set
+#covering Georgia Tech's all-time football history. The data
+#will be a CSV file, meaning that each line will be a comma-
+#separated list of values. Each line will describe one game.
+#The columns, from left-to-right, are:
+#
+# - Date: the date of the game, in Year-Month-Day format.
+# - Opponent: the name of the opposing team
+# - Location: Home, Away, or Neutral
+# - Points For: Points scored by Georgia Tech
+# - Points Against: Points scored by the opponent
+#
+#If Points For is greater than Points Against, then Georgia
+#Tech won the game. If Points For is less than Points Against,
+#then Georgia Tech lost the game. If the two are equal, then
+#the game was a tie.
+#
+#You can see a subsection of this dataset in season2016.csv
+#in the top left, but the actual dataset you'll be accessing
+#here will have 1237 games.
+#
+#Write a function called all_time_record. all_time_record
+#should take as input a string representing an opposing team
+#name. It should return a string representing the all-time
+#record between Georgia Tech and that opponent, in the form
+#Wins-Losses-Ties. For example, Georgia Tech has beaten
+#Clemson 51 times, lost 28 times, and tied 2 times. So,
+#all_time_record("Clemson") would return the string "51-28-2".
+#
+#We have gone ahead and started the function and opened the
+#file for you. The first line of the file are headers:
+#Date,Opponent,Location,Points For,Points Against. After that,
+#every line is a game.
+
+
+def all_time_record(opponent):
+    record_file = open('../resource/lib/public/georgia_tech_football.csv', 'r')
+    
+    data = record_file.read()
+    words = []
+    Oneword = ""
+    for word in data:
+        if word != " " and word != "\n":
+           Oneword += word
+           if word == ',' or word == "\n":
+              w = Oneword.replace(',','').split('\n')
+              words.append(w)
+              Oneword = ""
+    a = 0
+    b = 0
+    c = 0
+    count = 0
+    values = []
+    wins = 0
+    losses = 0
+    ties = 0
+    for word in words:
+        try:
+           if type(int(word[0])) == int:
+              b = word
+              values.append(b)
+        except ValueError:
+              continue
+    for value in values:
+        for v in value:
+            count += 1
+            a = int(v)
+            if c != 0:
+               if a > c :
+                  wins += 1
+               elif a < c:
+                  losses += 1
+               elif a == c:
+                  ties += 1
+        c = a
+    return str(wins)+"-"+str(losses)+"-"+str(ties)
+    #Add some code here! Don't forget to close the file when 
+    #you're done reading from it, before returning.
+    
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 51-28-2, 51-33-1, and 29-21-3, each on a separate
+#line.
+print(all_time_record("Clemson"))
+print(all_time_record("Duke"))
+print(all_time_record("North Carolina"))
+
+============================================================================  7
+#Last problem, you wrote a function that generated the all-
+#time win-loss-tie record for Georgia Tech against any other
+#team.
+#
+#That dataset had a lot of other information in it. Let's
+#use it to answer some more questions. As a reminder, the
+#data will be a CSV file, meaning that each line will be a
+#comma-separated list of values. Each line will describe one
+#game.
+#
+#The columns, from left-to-right, are:
+#
+# - Date: the date of the game, in Year-Month-Day format.
+# - Opponent: the name of the opposing team
+# - Location: Home, Away, or Neutral
+# - Points For: Points scored by Georgia Tech
+# - Points Against: Points scored by the opponent
+
+#This line will open the file:
+record_file = open('../resource/lib/public/georgia_tech_football.csv', 'r')
+
+
+#Here, add any code you want to allow you to answer the
+#questions asked below over on edX. This is just a sandbox
+#for you to explore the dataset: nothing is required for
+#submission here.
+
+================================================================================ 8
+#The line below will open a file containing information
+#about every pokemon through Generation 7:
+
+pokedex = open('../resource/lib/public/pokedex.csv', 'r')
+
+#We've also provided a sample subset of the data in
+#sample.csv.
+#
+#Each line of the file has 13 values, separated by commas.
+#They are: 
+#
+#
+# - Number: The numbered ID of the Pokemon, an integer
+# - Name: The name of the Pokemon, a string
+# - Type1: The Pokemon's primary type, a string
+# - Type2: The Pokemon's secondary type, a string (this
+#   may be blank)
+# - HP: The Pokemon's HP statistic, an integer in the range
+#   1 to 255
+# - Attack: The Pokemon's Attack statistic, an integer in
+#   the range 1 to 255
+# - Defense: The Pokemon's Defense statistic, an integer in
+#   the range 1 to 255
+# - SpecialAtk: The Pokemon's Special Attack statistic, an
+#   integer in the range 1 to 255
+# - SpecialDef: The Pokemon's Special Defense statistic, an
+#   integer in the range 1 to 255
+# - Speed: The Pokemon's Speed statistic, an integer in the
+#   range 1 to 255
+# - Generation: What generation the Pokemon debuted in, an
+#   integer in the range 1 to 7
+# - Legendary: Whether the Pokemon is considered "legendary"
+#   or not, either TRUE or FALSE
+# - Mega: Whether the Pokemon is "Mega" or not, either TRUE
+#   or FALSE
+#
+#Use this dataset to answer the questions below.
+
+
+#Here, add any code you want to allow you to answer the
+#questions asked below over on edX. This is just a sandbox
+#for you to explore the dataset: nothing is required for
+#submission here.
+
+=================================================================================  9
+#One of the early common methods for encrypting text was the
+#Playfair cipher. You can read more about the Playfair cipher
+#here: https://en.wikipedia.org/wiki/Playfair_cipher
+#
+#The Playfair cipher starts with a 5x5 matrix of letters,
+#such as this one:
+#
+# D A V I O
+# Y N E R B
+# C F G H K
+# L M P Q S
+# T U W X Z
+#
+#To fit the 26-letter alphabet into 25 letters, I and J are
+#merged into one letter. When decrypting the message, it's
+#relatively easy to tell from context whether a letter is
+#meant to be an i or a j.
+#
+#To encrypt a message, we first remove all non-letters and
+#convert the entire message to the same case. Then, we break
+#the message into pairs. For example, imagine we wanted to
+#encrypt the message "PS. Hello, worlds". First, we could
+#convert it to PSHELLOWORLDS, and then break it into letter
+#pairs: PS HE LL OW OR LD S. If there is an odd number of
+#characters, we add X to the end.
+#
+#Then, for each pair of letters, we locate both letters in
+#the cipher square. There are four possible orientations
+#for the pair of letters: they could be in different rows
+#and columns (the "rectangle" case), they could be in the
+#same row but different columns (the "row" case), they could
+#be in the same column but different rows (the "column"
+#case), or they could be the same letter (the "same" case).
+#
+#Looking at the message PS HE LL OW OR LD SX:
+#
+# - PS is the Row case: P and S are in the same row.
+# - HE is the Rectangle case: H and E are in different rows
+#   and columns of the square.
+# - LD is the Column case: L and D are in the same column.
+# - LL is the Same case as it's two of the same letter.
+#
+#For the Same case, we replace the second letter in the pair
+#with X, and then proceed as normal. When decrypting, it
+#would be easy to see the our result was not intended to be
+#PS HELXO WORLDSX, and we would thus assume the X is meant to
+#repeat the previous letter, becoming PS HELLO WORLDSX.
+#
+#What we do for each of the other three cases is different:
+#
+# - For the Rectangle case, we replace each letter with
+#   the letter in the same row, but the other letter's
+#   column. For example, we would replace HE with GR:
+#   G is in the same row as H but the same column as E,
+#   and R is in the same row as E but the same column as
+#   H. For another example, CS would become KL: K is in
+#   C's row but S's column, and L is in C's column but S's
+#   row.
+# - For the Row case, we pick the letter to the right of
+#   each letter, wrapping around the end of the row if we
+#   need to. PS becomes QL: Q is to the right of P, and L
+#   is to the right of S if we wrap around the end of the
+#   row.
+# - For the Column case, we pick the letter below each
+#   letter, wrapping around if necessary. LD becomes TY:
+#   T is below L and Y is below D.
+#
+#We would then return the resultant encrypted message.
+#
+#Decrypting a message is essentially the same process.
+#You would use the exact same cipher and process, except
+#for the Row and Column cases, you would shift left and up
+#instead of right and down.
+#
+#Write two methods: encrypt and decrypt. encrypt should
+#take as input a string, and return an encrypted version
+#of it according to the rules above.
+#
+#To encrypt the string, you would:
+#
+# - Convert the string to uppercase.
+# - Replace all Js with Is.
+# - Remove all non-letter characters.
+# - Add an X to the end if the length if odd.
+# - Break the string into character pairs.
+# - Replace the second letter of any same-character
+#   pair with X (e.g. LL -> LX).
+# - Encrypt it.
+#
+#decrypt should, in turn, take as input a string and
+#return the unencrypted version, just undoing the last
+#step. You don't need to worry about Js and Is, duplicate
+#letters, or odd numbers of characters in decrypt.
+#
+#For example:
+#
+# encrypt("PS. Hello, world") -> "QLGRQTVZIBTYQZ"
+# decrypt("QLGRQTVZIBTYQZ") -> "PSHELXOWORLDSX"
+#
+#HINT: You might find it easier if you implement some
+#helper functions, like a find_letter function that
+#returns the row and column of a letter in the cipher.
+#
+#HINT 2: Once you've written encrypt, decrypt should
+#be trivial: try to think of how you can modify encrypt
+#to serve as decrypt.
+#
+#To make this easier, we've gone ahead and created the
+#cipher as a 2D tuple for you:
+CIPHER = (("D", "A", "V", "I", "O"),
+          ("Y", "N", "E", "R", "B"),
+          ("C", "F", "G", "H", "K"),
+          ("L", "M", "P", "Q", "S"),
+          ("T", "U", "W", "X", "Z"))
+
+
+
+#Add your code here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: QLGRQTVZIBTYQZ, then PSHELXOWORLDSX
+print(encrypt("PS. Hello, world"))
+print(decrypt("QLGRQTVZIBTYQZ"))
+
+===============================================================================  10
+#Create a class called Name. Name should have two attributes
+#(instance variables): first_name and last_name. Make sure
+#the variable names match those words. Both will be strings.
+#
+#Name should have a constructor with two required parameters,
+#one for each of those attributes (first_name and last_name,
+#in that order).
+#
+#Name should also have two methods. The first should be
+#called find_printed_name, and should return the first and
+#last name with a space in between, e.g. "David Joyner". The
+#second method should be called find_sortable_name, and
+#should return the last name, then a comma and space, and
+#then only the first initial, e.g. "Joyner, D".
+#
+#Neither sortable_name nor printed_name should be attributes:
+#both should be created and returned when those methods are
+#called. Neither method will have any parameters besides self.
+
+
+#Write your class here!
+class Name:
+    def __init__(self,first_name,last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+        
+    def find_printed_name(self):
+        return self.first_name+" "+self.last_name
+    
+    def find_sortable_name(self):
+        return self.last_name+", "+self.first_name[0]
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print
+#David
+#Joyner
+#David Joyner
+#Joyner, D
+test_name = Name("David", "Joyner")
+print(test_name.first_name)
+print(test_name.last_name)
+print(test_name.find_printed_name())
+print(test_name.find_sortable_name())
+
+================================================================================  11
+#Remember that Fibonacci's sequence is a sequence of numbers
+#where every number is the sum of the previous two numbers.
+#
+#Joynernacci numbers are similar to Fibonacci numbers, but
+#with two differences:
+#
+# - Fibonacci numbers are famous, Joynernacci numbers are
+#   not (yet).
+# - In Joynernacci numbers, even-indexed numbers are the
+#   sum of the previous two numbers, while odd-indexed
+#   numbers are the absolute value of the difference
+#   between the previous two numbers.
+#
+#For example: the Joynernacci sequence starts with 1 and 1
+#as the numbers at index 1 and 2. 3 is an odd index, so
+#the third number would be 0 (1 - 1 = 0). 4 is an even
+#index, so the fourth number would be 1 (0 + 1). 5 is an
+#odd index, so the fifth number would be 1 (1 - 0). And
+#so on.
+#
+#The first several Joynernacci numbers (and their indices)
+#are thus:
+#
+# 1  1  0  1  1  2  1  3  2  5  3  8  5 13  8 21 13 34 21
+# 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19
+#
+#Write a function called joynernacci that returns the nth
+#Joynernacci number. For example:
+#
+# joynernacci(5) -> 1
+# joynernacci(12) -> 8
+#
+#We recommend implementing joynernacci recursively, but it
+#is not required.
+
+
+#Write your code here!
+def joynernacci(n):
+    if n % 2 == 0:
+        return joynernacci(n - 1) + joynernacci(n - 2)
+    else:
+        return 1
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 1, then 8
+print(joynernacci(5))
+print(joynernacci(12))
+
+===============================================================================  12
+#Imagine you're writing a program to check if a person is
+#available at a certain time.
+#
+#To do this, you want to write a function called
+#check_availability. check_availability will have two
+#parameters: a list of instances of the Meeting class, and
+#proposed_time, a particular date and time.
+#
+#check_availability should return True (meaning the person
+#is available) if there are no instances of Meeting that
+#conflict with the proposed_time. In other words, it should
+#return False if proposed_time is between the start_time and
+#end_time for any meeting in the list of meetings.
+#
+#The Meeting class is defined below. It has two attributes:
+#start_time and end_time. start_time is an instance of the
+#datetime class showing when the meeting starts, and
+#end_time is an instance of the datetime class indicating
+#when the meeting ends.
+#
+#Hint: Instances of the datetime have at least six
+#attributes: year, month, day, hour, minute, and second.
+#
+#Hint 2: Comparison operators work with instances of the
+#datetime class. time_1 < time_2 will be True if time_1 is
+#earlier than time_2, and False otherwise.
+#
+#You should not assume that the list is sorted.
+
+#Here is our definition of the Meeting class:
+from datetime import datetime
+class Meeting:
+    def __init__(self, start_time, end_time):
+        self.start_time = start_time
+        self.end_time = end_time
+
+#Write your function here!
+def check_availability(meetings,prop_meeting):
+    for day in meetings:
+        if prop_meeting >= day.start_time and prop_meeting <= day.end_time:
+            return False
+        else:
+            return True
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: True, then False
+meetings = [Meeting(datetime(2018, 8, 1, 9, 0, 0), datetime(2018, 8, 1, 11, 0, 0)),
+            Meeting(datetime(2018, 8, 1, 15, 0, 0), datetime(2018, 8, 1, 16, 0, 0)),
+            Meeting(datetime(2018, 8, 2, 9, 0, 0), datetime(2018, 8, 2, 10, 0, 0))]
+print(check_availability(meetings, datetime(2018, 8, 1, 12, 0, 0)))
+print(check_availability(meetings, datetime(2018, 8, 1, 10, 0, 0)))
+
+================================================================================= 13
+#The game HORSE is a popular basketball shooting game.
+#It can be played with any number of players. One-by-one,
+#each player takes a shot from anywhere they want. If they
+#make the shot, the next person must make the same shot.
+#If they do not, they receive a letter: H, then O, then R,
+#then S, then E. Once a player receives all 5 letters, they
+#are out of the game.
+#
+#The game continues until all but one player has all five
+#letters.
+#
+#Write a function called check_horse_winner. This function
+#will take as input a tuple of at least two, but potentially
+#more, strings. 
+#
+#check_horse_winner should return the following:
+#
+# - If only one player is left with fewer than 5 letters,
+#   return "Player X wins!", where X is the index of the
+#   player in the list (which could be 0).
+# - If more than one player has fewer than 5 letters,
+#   return "Players X, Y: keep playing!", where X, Y, and
+#   potentially more numbers are the indices of all players
+#   who have not yet been eliminated.
+# - If no player has 5 letters, return "Everyone: keep
+#   playing!"
+
+
+#Write your function here!
+def check_horse_winner():
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print:
+#Everyone: keep playing!
+#Players 1, 2: keep playing!
+#Player 2 wins!
+print(check_horse_winner(("HOR", "HORS", "H", "HO")))
+print(check_horse_winner(("HORSE", "HOR", "HORS", "HORSE")))
+print(check_horse_winner(("HORSE", "HORSE", "HORS", "HORSE")))
+
+============================================================================= 14
+#Write a function called count_capital_consonants. This
+#function should take as input a string, and return as output
+#a single integer. The number the function returns should be
+#the count of characters from the string that were capital
+#consonants. For this problem, consider Y a consonant.
+#
+#For example:
+#
+# count_capital_consonants("Georgia Tech") -> 2
+# count_capital_consonants("GEORGIA TECH") -> 6
+# count_capital_consonants("gEOrgIA tEch") -> 0
+
+
+#Write your function here!
+
+
+
+#The lines below will test your code. Feel free to modify
+#them. If your code is working properly, these will print
+#the same output as shown above in the examples.
+print(count_capital_consonants("Georgia Tech"))
+print(count_capital_consonants("GEORGIA TECH"))
+print(count_capital_consonants("gEOrgIA tEch"))
+
+============================================================================= 15
+#Write a function called are_anagrams. The function should
+#have two parameters, a pair of strings. The function should
+#return True if the strings are anagrams of one another,
+#False if they are not.
+#
+#Two strings are considered anagrams if they have only the
+#same letters, as well as the same count of each letter. For
+#this problem, you should ignore spaces and capitalization.
+#
+#So, for us: "Elvis" and "Lives" would be considered
+#anagrams. So would "Eleven plus two" and "Twelve plus one".
+#
+#Note that if one string can be made only out of the letters
+#of another, but with duplicates, we do NOT consider them
+#anagrams. For example, "Elvis" and "Live Viles" would not
+#be anagrams.
+
+
+#Write your function here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: True, False, True, False, each on their own line.
+print(are_anagrams("Elvis", "Lives"))
+print(are_anagrams("Elvis", "Live Viles"))
+print(are_anagrams("Eleven plus two", "Twelve plus one"))
+print(are_anagrams("Nine minus seven", "Five minus three"))
+
+============================================================================== 16
+#Write a function called alter_list. alter_list should have
+#two parameters: a list of strings and a list of integers.
+#
+#The list of integers will represent indices for the list of
+#strings. alter_list should alter the capitalization of all
+#the words at the designated indices. If the word was all
+#capitals, it should become all lower case. If it was all
+#lower case, it should become all capitals. You may assume
+#that the words will already be all-caps or all-lower case.
+#
+#For example:
+#
+# string_list = ["hello", "WORLD", "HOW", "are", "you"]
+# index_list = [0, 2]
+# alter_list(string_list, index_list) -> 
+#                ["HELLO", "WORLD", "how", "are", "you"]
+#
+#After calling alter_list, the strings at indices 0 and 2
+#have switched their capitalization. 
+#
+#Note that it may be the case that the same index is present
+#in the second twice. If this happens, you should switch the
+#text at that index twice. For example:
+#
+# string_list = ["hello", "WORLD", "HOW", "are", "you"]
+# index_list = [0, 2, 2]
+# alter_list(string_list, index_list) -> 
+#                ["HELLO", "WORLD", "HOW", "are", "you"]
+#
+#2 is in index_list twice, so the string at index 2 is
+#switched twice: capitals to lower case, then back to
+#capitals.
+
+
+#Write your function here!
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print:
+#["hello", "WORLD", "HOW", "are", "you"]
+#["HELLO", "WORLD", "HOW", "are", "you"]
+print(alter_list(["hello", "WORLD", "HOW", "are", "you"], [0, 2]))
+print(alter_list(["hello", "WORLD", "HOW", "are", "you"], [0, 2, 2]))
+
+=================================================================================  17
+#Write a function called rabbit_hole. rabbit_hole should have
+#two parameters: a dictionary and a string. The string may be
+#a key to the dictionary. The value associated with that key,
+#in turn, may be another key to the dictionary.
+#
+#Keep looking up the keys until you reach a key that has no
+#associated value. Then, return that key.
+#
+#For example, imagine if you had the following dictionary.
+#This one is sorted to make this example easier to follow:
+#
+# d = {"bat": "pig", "pig": "cat", "cat": "dog", "dog": "ant",
+#      "cow": "bee", "bee": "elk", "elk": "fly", "ewe": "cod",
+#      "cod": "hen", "hog": "fox", "fox": "jay", "jay": "doe",
+#      "rat": "ram", "ram": "rat"}
+#
+#If we called rabbit_hole(d, "bat"), then our code should...
+#
+# - Look up "bat", and find "pig"
+# - Look up "pig", and find "cat"
+# - Look up "cat", and find "dog"
+# - Look up "dog", and find "ant"
+# - Look up "ant", and find no associated value, and so it would
+#   return "ant".
+#
+#Other possible results are:
+#
+# rabbit_hole(d, "bat") -> "fly"
+# rabbit_hole(d, "ewe") -> "hen"
+# rabbit_hole(d, "jay") -> "doe"
+# rabbit_hole(d, "yak") -> "yak"
+#
+#Notice that if the initial string passed in is not a key in
+#the dictionary, that string should be returned as the result as
+#well.
+#
+#Note, however, that it is possible to get into a loop. In the
+#dictionary above, rabbit_hole(d, "rat") would infinitely go
+#around between "rat" and "ram". You should prevent this: if a
+#key is ever accessed more than once (meaning a loop has been
+#reached), return the boolean False.
+#
+#Hint: If you try to access a value from a dictionary that does
+#not exist, a KeyError will be raised.
+
+
+
+#Write your function here!
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: ant, hen, doe, yak, False, each on their own line.
+d = {"bat": "pig", "pig": "cat", "cat": "dog", "dog": "ant",
+     "cow": "bee", "bee": "elk", "elk": "fly", "ewe": "cod",
+     "cod": "hen", "hog": "fox", "fox": "jay", "jay": "doe",
+     "rat": "ram", "ram": "rat"}
+
+print(rabbit_hole(d, "bat"))
+print(rabbit_hole(d, "ewe"))
+print(rabbit_hole(d, "jay"))
+print(rabbit_hole(d, "yak"))
+print(rabbit_hole(d, "rat"))
+
+==================================================================================  18
+#Write a function called lazy_encrypt. This function should
+#take three parameters: two strings and a dictionary. The
+#first string is the filename of a file to which to write
+#(output_file), the second string is the filename of a file
+#from which to read (input_file), and the dictionary is a
+#mapping of character:character pairs you should use to
+#"encrypt" the contents of the input file before writing it
+#to the output file.
+#
+#lazy_encrypt should go through every character in the
+#input file. If the character is a key in the dictionary,
+#then lazy_encrypt should write the value associated with
+#that key to the output file. If it is not a key, it should
+#write the original character.
+#
+#For example, imagine if the input file contained the text
+#"Hello world", and the dictionary was {"e": "o", "o": "a"}.
+#Then, lazy_encrypt would write "Holla warld" to the output
+#file. Each letter is only substituted once. You should not
+#ignore case: if the input file had instead contained the
+#text "HELLO WORLD", then nothing should have been changed
+#because the keys in the dictionary are lower-case.
+#
+#We've included two files for you to test on: anInputFile.txt
+#and anOutputFile.txt. The test code below will copy the text
+#from the first file to the second. Feel free to modify the
+#first to test different setups.
+
+
+#Write your function here!
+
+
+#The code below will test your function. You can find the two
+#files it references in the drop-down in the top left. If your
+#code works, the contents of anOutputFile.txt after running
+#will be:
+#Horo is a protty simplo mossago ta oncrypt
+#Whon it's oncryptod, it will laak difforont
+
+lazy_encrypt("anOutputFile.txt", "anInputFile.txt", {"e": "o", "o": "a"})
+print("Done running! Check anOutputFile.txt for the result.")
+
+==================================================================================  19
+
+
+
+
+
+
+
+
