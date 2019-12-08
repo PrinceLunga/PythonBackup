@@ -1,0 +1,1378 @@
+#Below is a class representing a person. You'll see the
+#Person class has three instance variables: name, age,
+#and GTID. The constructor currently sets these values
+#via a calls to the setters.
+#
+#Create a new function called same_person. same_person
+#should take two instances of Person as arguments, and
+#returns True if they are the same Person, False otherwise.
+#Two instances of Person are considered to be the same if
+#and only if they have the same GTID. It does not matter
+#if their names or ages differ as long as they have the
+#same GTID.
+#
+#You should not need to modify the Person class.
+
+class Person:
+    def __init__(self, name, age, GTID):
+        self.set_name(name)
+        self.set_age(age)
+        self.set_GTID(GTID)
+
+    def set_name(self, name):
+        self.name = name
+
+    def set_age(self, age):
+        self.age = age
+
+    def set_GTID(self, GTID):
+        self.GTID = GTID
+
+    def get_name(self):
+        return self.name
+
+    def get_age(self):
+       return self.age
+
+    def get_GTID(self):
+        return self.GTID
+
+#Add your code below!
+
+def same_person(person1, person2):
+    if person1.GTID == person2.GTID:
+        return True
+    else:
+        return False
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: True, then False.
+person1 = Person("David Joyner", 30, 901234567)
+person2 = Person("D. Joyner", 29, 901234567)
+person3 = Person("David Joyner", 30, 903987654)
+print(same_person(person1, person2))
+print(same_person(person1, person3))
+
+============================================================================  2
+#In many areas, different goods are taxed at different rates.
+#Areas may charge higher tax rates for items like alcohol,
+#gasoline, and soda, and lower tax rates for items like
+#grocery items, medicines, and clothes.
+#
+#Write a class called PurchasedGood. The constructor for
+#PurchasedGood should have one positional parameter called
+#price, which is the price of the good as a float. It should
+#then have two keyword parameters in this order:
+# - category, which is the category the good falls into.
+#   category should have a default value of "General".
+# - tax, which is the sales tax rate. tax should have a
+#   default value of 0.07.
+#
+#These three values should be stored in attributes called
+#'price', 'category', and 'tax'.
+#
+#Then, add a method called calculate_total. calculate_total
+#should calculate the price plus the price times the tax
+#rate, then round the result to 2 decimal places and return
+#the result. Remember, you can round to two decimal places
+#using round(total, 2).
+
+
+#Add your class here!
+class PurchasedGood:
+    def __init__(self, price, category="General", tax= 0.07):
+        self.price = price
+        self.category = category
+        self.tax = tax
+        
+    def calculate_total(self):
+        tally = ( self.price * self.tax) + self.price 
+        return round(tally, 2)
+        
+    
+
+
+
+#Below are some lines of code that will test your object.
+#You can change these lines to test your code in different
+#ways.
+#
+#If your code works correctly, this will originally run
+#error-free and print ignoring rounding errors):
+#5.0
+#General
+#0.07
+#5.35
+#5.0
+#Grocery
+#0.03
+#5.15
+good_1 = PurchasedGood(5.00)
+print(good_1.price)
+print(good_1.category)
+print(good_1.tax)
+print(good_1.calculate_total())
+
+good_2 = PurchasedGood(5.00, category = "Grocery", tax = 0.03)
+print(good_2.price)
+print(good_2.category)
+print(good_2.tax)
+print(good_2.calculate_total())
+
+=============================================================================  3
+#In Pokemon Go, a Pokemon is defined by several different
+#parameters. For simplicity in this problem, we'll say that
+#every Pokemon is defined by two parameters: its name, a
+#string, and its power level, an integer.
+#
+#Create a class called Pokemon. The Pokemon class's
+#constructor should have two parameters (in addition to self):
+#the Pokemon's name and the Pokemon's power. These should be
+#assigned to attributes called 'name' and 'power'.
+#
+#The Pokemon class should also have a method called
+#would_defeat. would_defeat will have one parameter: an
+#instance of a _different_ Pokemon. would_defeat should
+#return True if this Pokemon's power is greater than the
+#other Pokemon's power, or False if not.
+
+
+#Add your code here!
+class Pokemon:
+    def __init__(self, name, power):
+        self.name = name
+        self.power = power
+        
+    def would_defeat(self,pokemon):
+        if(self.power > pokemon.power):
+            return True
+        else:
+            return False
+
+
+
+#Below are some lines of code that will test your object.
+#You can change these lines to test your code in different
+#ways.
+#
+#If your code works correctly, this will originally run
+#error-free and print:
+#Pikachu
+#500
+#False
+#True
+new_pokemon_1 = Pokemon("Pikachu", 500)
+print(new_pokemon_1.name)
+print(new_pokemon_1.power)
+
+new_pokemon_2 = Pokemon("Charizard", 2412)
+new_pokemon_3 = Pokemon("Squirtle", 312)
+print(new_pokemon_1.would_defeat(new_pokemon_2))
+print(new_pokemon_1.would_defeat(new_pokemon_3))
+
+==========================================================================  4
+#Recall in Coding Problem 4.4.4 (and before that, in Coding
+#Problem 4.3.9) you built a program for finding the net
+#force (magnitude and angle) on an object from several
+#individual forces.
+#
+#In the next two exercises, we're going to convert that
+#system into one that uses objects.
+#
+#To start, create a class called Force. The constructor for
+#Force should have two required arguments: magnitude and
+#angle. These should be saved to two attributes called
+#'magnitude' and 'angle'. You should assume angle is
+#initially in degrees, from -180 to 180.
+#
+#Then, add three methods to Force:
+#
+# - get_horizontal should return the horizontal component
+#   of the force, according to the formula:
+#   horizontal = magnitude * cos(angle).
+# - get_vertical should return the vertical component of
+#   the force, according to the formula:
+#   vertical = magnitude * sin(angle).
+# - get_angle should return the angle of the force, but
+#   should have a keyword parameter called use_degrees.
+#   use_degrees should default to True. If use_degrees
+#   is true, it should return the angle in degrees; if it
+#   is false, it should return the angle in radians.
+#
+#HINT: Don't overcomplicate this. All we want here is
+#a class called Force with four methods: __init__,
+#get_horizontal, get_vertical, and get_angle. Note that
+#these are not true "getters" even though they have "get"
+#in their names: all three will have some reasoning
+#beyond just returning a single value.
+#
+#HINT 2: angle will initially be passed into the
+#constructor in degrees. You may store it in either
+#degrees or radians. Each approach has different benefits,
+#but make sure to keep track of when it's in angles and
+#when it's in degrees.
+
+
+import math
+from math import sin, cos, atan2, radians, degrees, sqrt
+
+
+#Add your code here!'
+class Force:
+    def __init__(self, magnitude, angle):
+        self.magnitude = magnitude
+        self.angle = math.radians(angle)
+        
+    def get_horizontal(self):
+        horizontal = self.magnitude * cos(self.angle)
+        return horizontal
+    
+    def get_vertical(self):
+        vertical = self.magnitude * sin(self.angle)
+        return vertical
+    
+    def get_angle(self, use_degrees = True):
+        if(use_degrees):
+            return round(math.degrees(self.angle), 1)
+        else:
+            return self.angle
+            
+
+
+
+#Below are some lines of code that will test your object.
+#You can change these lines to test your code in different
+#ways.
+#
+#If your code works correctly, this will originally run
+#error-free and print (with room for rounding errors):
+#Magnitude: 500
+#Horizontal: 250.0
+#Vertical: 433.0127018922193
+#Angle in Degrees: 60.0
+#Angle in Radians: 1.0471975511965976
+a_force = Force(500, 60)
+print("Magnitude:", a_force.magnitude)
+print("Horizontal:", a_force.get_horizontal())
+print("Vertical:", a_force.get_vertical())
+print("Angle in Degrees:", a_force.get_angle())
+print("Angle in Radians:", a_force.get_angle(use_degrees = False))
+
+============================================================================  5
+from math import atan2, degrees, radians, sin, cos
+
+#Last problem, you created a new class called Force. Copy that
+#class below:
+
+
+
+#In this problem, you're going to use that class to calculate
+#the net force from a list of forces.
+#
+#Write a function called find_net_force. find_net_force should
+#have one parameter: a list of instances of Force. The
+#function should return new instance of Force with the total
+#net magnitude and net angle as the values for its magnitude
+#and angle attributes.
+#
+#As a reminder:
+#
+# - To find the magnitude of the net force, sum all the
+#   horizontal components and sum all the vertical components.
+#   The net force is the square root of the sum of the squares
+#   of the horizontal forces and the vertical foces (i.e.
+#   (total_horizontal ** 2 + total_vertical ** 2) ** 0.5)
+# - To find the angle of the net force, call atan2 with two
+#   arguments: the total vertical and total horizontal
+#   forces (in that order).
+# - Remember to round both the magnitude and direction to one
+#   decimal place. This can be done using round(magnitude, 1)
+#   and round(angle, 1).
+# - The Force class has three methods: get_horizontal returns
+#   a single force's horizontal component. get_vertical
+#   returns a single force's vertical component. get_angle
+#   returns a single force's angle in degrees (or in radians
+#   if you call get_angle(use_degrees = False).
+#
+#HINT: Don't overcomplicate this. The Force class does a lot
+#of your work for you. Use it! You should not need any trig
+#functions except atan2, degrees, and radians.
+
+
+#Add your function here!
+import math
+from math import sin, cos, atan2, radians, degrees, sqrt
+
+
+#Add your code here!'
+class Force:
+    def __init__(self, magnitude, angle):
+        self.magnitude = magnitude
+        self.angle = math.radians(angle)
+        
+    def get_horizontal(self):
+        horizontal = self.magnitude * cos(self.angle)
+        return horizontal
+    
+    def get_vertical(self):
+        vertical = self.magnitude * sin(self.angle)
+        return vertical
+    
+    def get_angle(self, use_degrees = True):
+        if(use_degrees == True):
+           return round(math.degrees(self.angle), 1)
+        else:
+            return radians(self.angle)
+
+          
+def find_net_force(list_of_forces):
+        total_horizontal = 0
+        total_vertical = 0
+        angle = 0
+        for x in range(0,3):
+            total_horizontal += list_of_forces[x].get_horizontal()
+            total_vertical += list_of_forces[x].get_vertical()
+        angle = math.atan2(total_vertical, total_horizontal)
+            
+        magnitude = ((total_horizontal ** 2 + total_vertical ** 2) ** 0.5)
+        
+        return Force(round(magnitude, 1), round(angle, 1))
+        
+            
+            
+#Below are some lines of code that will test your object.
+#You can change these lines to test your code in different
+#ways.
+#
+#If your code works correctly, this will originally run
+#error-free and print:
+#103.1
+#-14.0
+
+force_1 = Force(50, 90)
+force_2 = Force(75, -90)
+force_3 = Force(100, 0)
+forces = [force_1, force_2, force_3]
+net_force = find_net_force(forces)
+print(net_force.magnitude)
+print(net_force.get_angle())
+
+===============================================================================  6
+#Here's a long one -- you can do it!
+#
+#Rewrite the following class so that it uses getters and
+#setters for all three variables (title, description,
+#completed). The getters should be called: getTitle,
+#getDescription,  getCompleted. The setters should be
+#called: setTitle, setDescription, setCompleted.
+#
+#In addition, the setter should check to make sure that
+#the new value is the correct type: title and description
+#should always be of type str, and completed should always
+#be of type bool. If the value is not the right type, set
+#the value of the corresponding attribute to None (the
+#keyword, not the string "None").
+#
+#To summarize (and give a to-do list):
+# - Create getters and setters for each variable.
+# - Check the type of the new value inside the setters,
+#   and print an error if it's the wrong type.
+#
+#Hint: You can check to see if a variable is a string by
+#checking the logical expression type(var) == str, where
+#var is the variable you're checking. For integers, use
+#int instead of str. For floats, use float. For booleans,
+#use bool.
+#
+#Hint 2: Remember to put self before any instance variables
+#or methods you're trying to access. For example, to access
+#the variable title from within a method, you would need to
+#write self.title.
+
+
+class TodoItem:
+    def __init__(self, title, description, completed=False):
+        self.title = title
+        self.description = description
+        self.completed = completed
+        
+    def getTitle(self):
+        return self.title
+
+    def getDescription(self):
+        return self.description
+
+    def getCompleted(self):
+        return self.completed
+
+    def setTitle(self,title):
+        if(type(title) == str):
+            self.title = title
+        else:
+            self.title = None
+  
+    def setDescription(self,description):
+        
+        if(type(description) == str):
+            self.description = description
+        else:
+            self.description = None
+        
+    def setCompleted(self, completed):
+        if(type(completed) == bool):
+           self.completed = completed
+        else:
+            self.completed = None
+        
+#Below are some lines of code that will test your class.
+#You can change this code to test how your class behaves
+#with different variables and method calls.
+#
+#If your class works correctly, this will originally print:
+#Mow
+#Mow the lawn
+#False
+#True
+#None
+item = TodoItem("Mow", "Mow the lawn")
+print(item.getTitle())
+print(item.getDescription())
+print(item.getCompleted())
+item.setCompleted(True)
+print(item.getCompleted())
+item.setTitle(False)
+print(item.getTitle())
+
+=================================================================================  7
+#The Fibonacci sequence is a number sequence where each
+#number is the sum of the previous two numbers. The first
+#two numbers are defined as 0 and 1, so the third number is
+#1 (0 + 1 = 1), the fourth number is 2 (1 + 1 = 2), the
+#fifth number is 3 (1 + 2 = 3), the sixth number is 5
+#(2 + 3 = 5), and so on.
+#
+#Below we've started a class called FibSeq. At any time,
+#FibSeq holds two values from the Fibonacci sequence:
+#back1 and back2.
+#
+#Create a new method inside FibSeq called next_number. The
+#next_number method should:
+#
+# - Calculate and return the next number in the sequence,
+#   based on the previous 2.
+# - Update back2 with the former value of back1, and update
+#   back1 with the new next item in the sequence.
+#
+#This means that consecutive calls to next_number should
+#yield each consecutive number from the Fibonacci sequence.
+#Calling next_number 5 times would print 1, 2, 3, 5, and 8.
+
+
+class FibSeq:
+    def __init__(self):
+        self.back1 = 1
+        self.back2 = 0
+        
+    def next_number(self):
+        sumInit = self.back1 + self.back2
+        self.back2 = self.back1
+        self.back1 = sumInit
+        return sumInit
+
+#The code below will test your method. It's not used for
+#grading, so feel free to change it. As written, it should
+#print 1, 2, 3, 5, and 8.
+newFib = FibSeq()
+print(newFib.next_number())
+print(newFib.next_number())
+print(newFib.next_number())
+print(newFib.next_number())
+print(newFib.next_number())
+
+=============================================================================  8
+#Write a class called "Burrito". A Burrito should have the 
+#following attributes (instance variables):
+#
+# - meat
+# - to_go
+# - rice 
+# - beans 
+# - extra_meat (default: False)
+# - guacamole (default: False)
+# - cheese (default: False)
+# - pico (default: False)
+# - corn (default: False)
+#
+#The constructor should let any of these attributes be
+#changed when the object is instantiated. The attributes
+#with a default value should be optional. Both positional
+#and keyword attributes should be in the order shown above
+#(for the autograder to work).
+
+
+#Write your code here!
+class Burrito:
+    def __init__(self, meat = False, to_go = False, rice = False, beans = False, extra_meat = False, guacamole = False, cheese = False, pico = False, corn = False):
+        self.meat = meat
+        self.to_go = to_go
+        self.rice = rice
+        self.beans = beans
+        self.extra_meat = extra_meat
+        self.guacamole = guacamole
+        self.cheese = cheese
+        self.pico = pico
+        self.corn = corn
+    
+    
+    
+
+#The code below will test your class. If it is written
+#correctly, this will print True, then False. Note,
+#though, that we'll test your code against more complex
+#test cases when you submit.
+newBurrito = Burrito("Tofu")
+print(newBurrito.to_go)
+print(newBurrito.guacamole)
+
+=================================================================================  9
+#Copy your Burrito class from the last exercise. Now,
+#write a getter and a setter method for each attribute. 
+#Each setter should accept a value as an argument. If the 
+#value is a valid value, it should set the corresponding 
+#attribute to the given value. Otherwise, it should set the 
+#attribute to False.
+#
+#Edit the constructor to use these new setters and getters.
+#In other words, if we were to call:
+#
+# new_burrito = Burrito("spaghetti", True, True, False)
+#
+#new_burrito.meat would be False because "spaghetti" is not
+#one of the valid options. Note that you should NOT try to
+#check if the new value is valid in both the constructor and
+#the setter: instead, just call the setter from the
+#constructor using something like self.set_meat(meat).
+#
+#Valid values for each setter are as follows:
+#
+# - set_meat: "chicken", "pork", "steak", "tofu", False
+# - set_to_go: True, False
+# - set_rice: "brown", "white", False
+# - set_beans: "black", "pinto", False
+# - set_extra_meat: True, False
+# - set_guacamole: True, False
+# - set_cheese: True, False
+# - set_pico: True, False
+# - set_corn: True, False
+#
+#Make sure you name each setter with the format: 
+#"set_some_attribute" and "get_some_attribute"
+#
+#For example, the getter for meat would be get_meat. The
+#getter for to_go would be get_to_go.
+#
+#Hint: Your code is going to end up *very* long. This
+#will be the longest program you've written so far, but
+#it isn't the most complex. Complexity and length are
+#often very different!
+#
+#Hint 2: Checking for valid values will be much easier
+#if you make a list of valid values for each attribute
+#and check the new value against that.
+
+
+#Write your code here!
+class Burrito:
+    def __init__(self, meat = False, to_go = False, rice = False, beans = False, extra_meat = False, guacamole = False, cheese = False, pico = False, corn = False):
+        self.meat = meat
+        self.to_go = to_go
+        self.rice = rice
+        self.beans = beans
+        self.extra_meat = extra_meat
+        self.guacamole = guacamole
+        self.cheese = cheese
+        self.pico = pico
+        self.corn = corn
+        
+
+    def set_meat(self, meat):
+        if meat in " chickenporksteaktofu":
+            self.meat = meat
+        else:
+            self.meat = False
+            
+    def set_to_go(self, to_go):
+        if to_go == True:
+            self.to_go - to_go
+        else:
+            self.to_go = False
+            
+    def set_rice(self, rice):
+        if rice in "brownwhite":
+            self.rice = rice
+        else:
+            self.rice = False
+            
+            
+    def set_beans(self, beans):
+       if beans in "blackpinto":
+            self.beans = beans
+       else:
+           self.beans = False
+            
+            
+    def set_extra_meat(self, extra_meat):
+       if(extra_meat > 0):
+            self.extra_meat = extra_meat
+       else:
+            self.extra_meat = False
+            
+    def set_guacamole(self, guacamole):
+        if(guacamole):
+            self.guacamole = guacamole
+        else:
+            self.guacamole = False
+            
+    def set_cheese(self, cheese):
+       if(cheese):
+            self.cheese = cheese
+       else:
+            self.cheese = False
+            
+    def set_pico(self, pico):
+       if(pico):
+            self.pico = pico
+       else:
+           self.pico = False
+            
+    def set_corn(self, corn):
+       if(corn):
+            self.corn - corn
+       else:
+           self.corn = False
+            
+            
+    #getters
+    def get_meat(self):
+         return self.meat 
+        
+    def get_to_go(self):
+        return self.to_go
+    
+    def get_rice(self):
+        return self.rice   
+            
+    def get_beans(self):
+        return self.beans
+    
+            
+    def get_extra_meat(self):
+        return self.extra_meat
+    
+    def get_guacamole(self):
+        return self.guacamole
+    
+    def get_cheese(self):
+        return self.cheese
+    
+    def get_pico(self):
+        return self.pico
+    
+    def get_corn(self):
+        return self.corn     
+            
+
+
+
+#Feel free to add code below to test out the class that
+#you've written. It won't be used for grading.
+
+================================================================================  10
+#Copy your Burrito class from the last exercise. Now, add
+#a method called "get_cost" to the Burrito class. It should
+#accept zero arguments (except for "self", of course) and
+#it will return a float. Here's how the cost should be
+#computed:
+#
+# - The base cost of a burrito is $5.00
+# - If the burrito's meat is "chicken", "pork" or "tofu", 
+#   add $1.00 to the cost
+# - If the burrito's meat is "steak", add $1.50 to the cost
+# - If extra_meat is True and meat is not set to False, add
+#   $1.00 to the cost
+# - If guacamole is True, add $0.75 to the cost
+#
+#Make sure to return the result as a float even if the total
+#is a round number (e.g. for burrito with no meat or
+#guacamole, return 5.0 instead of 5).
+
+
+#Write your code here!
+class Burrito:
+    def __init__(self, meat = False, to_go = False, rice = False, beans = False, extra_meat = False, guacamole = False, cheese = False, pico = False, corn = False):
+        self.meat = meat
+        self.to_go = to_go
+        self.rice = rice
+        self.beans = beans
+        self.extra_meat = extra_meat
+        self.guacamole = guacamole
+        self.cheese = cheese
+        self.pico = pico
+        self.corn = corn
+        
+
+    def set_meat(self, meat):
+        if meat in " chicken pork steak tofu":
+            self.meat = meat
+        else:
+            self.meat = False
+            
+    def set_to_go(self, to_go):
+        if to_go == True:
+            self.to_go - to_go
+        else:
+            self.to_go = False
+            
+    def set_rice(self, rice):
+        if rice in "brown white":
+            self.rice = rice
+        else:
+            self.rice = False
+            
+            
+    def set_beans(self, beans):
+       if beans in "black pinto":
+            self.beans = beans
+       else:
+           self.beans = False
+            
+            
+    def set_extra_meat(self, extra_meat):
+       if(extra_meat):
+            self.extra_meat = extra_meat
+       else:
+            self.extra_meat = False
+            
+    def set_guacamole(self, guacamole):
+        if(guacamole):
+            self.guacamole = guacamole
+        else:
+            self.guacamole = False
+            
+    def set_cheese(self, cheese):
+       if(cheese):
+            self.cheese = cheese
+       else:
+            self.cheese = False
+            
+    def set_pico(self, pico):
+       if(pico):
+            self.pico = pico
+       else:
+           self.pico = False
+            
+    def set_corn(self, corn):
+       if(corn):
+            self.corn - corn
+       else:
+           self.corn = False
+            
+            
+    #getters
+    def get_meat(self):
+         return self.meat 
+        
+    def get_to_go(self):
+        return self.to_go
+    
+    def get_rice(self):
+        return self.rice   
+            
+    def get_beans(self):
+        return self.beans
+    
+            
+    def get_extra_meat(self):
+        return self.extra_meat
+    
+    def get_guacamole(self):
+        return self.guacamole
+    
+    def get_cheese(self):
+        return self.cheese
+    
+    def get_pico(self):
+        return self.pico
+    
+    def get_corn(self):
+        return self.corn
+    
+    
+    def get_cost(self):
+        base_cost = 5.00
+        if(self.get_meat() in "chicken pork tofu"):
+            base_cost += 1
+        if(self.get_meat() in "steak"):
+            base_cost += 1.50
+        if((self.get_extra_meat() == True) and (self.get_meat())):
+            base_cost += 1.00
+        if(self.get_guacamole() == True):
+            base_cost += 0.75
+        return base_cost
+            
+           
+        
+
+
+
+#Below are some lines of code that will test your class.
+#You can change the value of the variable(s) to test your
+#class with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 7.75
+a_burrito = Burrito("pork", False, "white", "black", extra_meat = True, guacamole = True)
+print(a_burrito.get_cost())
+
+==========================================================================================  11
+#Copy your Burrito class from the last exercise. Below,
+#We've given you three additional classes named "Meat",  
+#"Rice" and "Beans." We've gone ahead and built getters
+#and setters in these classes to check if the incoming
+#values are valid, so you'll be able to remove those
+#from your original code.
+#
+#First, edit the constructor of your Burrito class.
+#Instead of calling setters to set the values of the
+#attributes self.meat, self.rice, and self.beans, it
+#should instead create new instances of Meat, Rice, and
+#Beans. The arguments to these new instances should be
+#the same as the arguments you were sending to the
+#setters previously (e.g. self.rice = Rice("brown")
+#instead of set_rice("brown")).
+#
+#Second, modify your getters and setters from your
+#original code so that they still return the same value
+#as before. get_rice(), for example, should still
+#return "brown" for brown rice, False for no rice, etc.
+#instead of returning the instance of Rice.
+#
+#Third, make sure that your get_cost function still
+#works when you're done changing your code.
+#
+#Hint: When you're done, creating a new instance of
+#Burrito with Burrito("pork", True, "brown", "pinto")
+#should still work to create a new Burrito. The only
+#thing changing is the internal reasoning of the
+#Burrito class.
+#
+#Hint 2: Notice that the classes Meat, Beans, and Rice
+#already contain the code to validate whether input is
+#valid. So, your setters in the Burrito class no
+#longer need to worry about that -- they can just pass
+#their input to the set_value() methods for those
+#classes.
+#
+#Hint 3: This exercise requires very little actual
+#coding: you'll only write nine lines of new code, and
+#those nine lines all replace existing lines of code
+#in the constructor, getters, and setters of Burrito.
+#
+#You should not need to modify the code below.
+
+class Meat:
+    def __init__(self, value=False):
+        self.set_value(value)
+            
+    def get_value(self):
+        return self.value
+    
+    def set_value(self, value):
+        if value in ["chicken", "pork", "steak", "tofu"]:
+            self.value = value
+        else:
+            self.value = False
+
+class Rice:
+    def __init__(self, value=False):
+        self.set_value(value)
+            
+    def get_value(self):
+        return self.value
+    
+    def set_value(self, value):
+        if value in ["brown", "white"]:
+            self.value = value
+        else:
+            self.value = False
+            
+class Beans:
+    def __init__(self, value=False):
+        self.set_value(value)
+            
+    def get_value(self):
+        return self.value
+    
+    def set_value(self, value):
+        if value in ["black", "pinto"]:
+            self.value = value
+        else:
+            self.value = False
+            
+
+            
+#Add and modify your code here!
+
+
+
+#Below are some lines of code that will test your class.
+#You can change the value of the variable(s) to test your
+#class with different inputs. Remember though, the results
+#of this code should be the same as the previous problem:
+#what should be different is how it works behind the scenes.
+#
+#If your function works correctly, this will originally
+#print: 7.75
+a_burrito = Burrito("pork", False, "white", "black", extra_meat = True, guacamole = True)
+print(a_burrito.get_cost())
+
+================================================================================  12
+
+#In this exercise, you won't edit any of your code from the
+#Burrito class. Instead, you're just going to write a
+#function to use instances of the Burrito class. You don't
+#actually have to copy/paste your previous code here if you
+#don't want to, although you'll need to if you want to write
+#some test code at the bottom.
+#
+#Write a function called total_cost. total_cost should take
+#as input a list of instances of Burrito, and return the
+#total cost of all those burritos together as a float.
+#
+#Hint: Don't reinvent the wheel. Use the work that you've
+#already done. The function can be written in only five
+#lines, including the function declaration.
+#
+#Hint 2: The exercise here is to write a function, not a
+#method. That means this function should *not* be part of
+#the Burrito class.
+
+
+#If you'd like to use the test code, paste your previous
+#code here.
+
+
+
+
+#Write your new function here.
+class Burrito:
+    def __init__(self, meat = False, to_go = False, rice = False, beans = False, extra_meat = False, guacamole = False, cheese = False, pico = False, corn = False):
+        self.meat = meat
+        self.to_go = to_go
+        self.rice = rice
+        self.beans = beans
+        self.extra_meat = extra_meat
+        self.guacamole = guacamole
+        self.cheese = cheese
+        self.pico = pico
+        self.corn = corn
+        
+
+    def set_meat(self, meat):
+        if meat in " chicken pork steak tofu":
+            self.meat = meat
+        else:
+            self.meat = False
+            
+    def set_to_go(self, to_go):
+        if to_go == True:
+            self.to_go - to_go
+        else:
+            self.to_go = False
+            
+    def set_rice(self, rice):
+        if rice in "brown white":
+            self.rice = rice
+        else:
+            self.rice = False
+            
+            
+    def set_beans(self, beans):
+       if beans in "black pinto":
+            self.beans = beans
+       else:
+           self.beans = False
+            
+            
+    def set_extra_meat(self, extra_meat):
+       if(extra_meat):
+            self.extra_meat = extra_meat
+       else:
+            self.extra_meat = False
+            
+    def set_guacamole(self, guacamole):
+        if(guacamole):
+            self.guacamole = guacamole
+        else:
+            self.guacamole = False
+            
+    def set_cheese(self, cheese):
+       if(cheese):
+            self.cheese = cheese
+       else:
+            self.cheese = False
+            
+    def set_pico(self, pico):
+       if(pico):
+            self.pico = pico
+       else:
+           self.pico = False
+            
+    def set_corn(self, corn):
+       if(corn):
+            self.corn - corn
+       else:
+           self.corn = False
+            
+            
+    #getters
+    def get_meat(self):
+         return self.meat 
+        
+    def get_to_go(self):
+        return self.to_go
+    
+    def get_rice(self):
+        return self.rice   
+            
+    def get_beans(self):
+        return self.beans
+    
+            
+    def get_extra_meat(self):
+        return self.extra_meat
+    
+    def get_guacamole(self):
+        return self.guacamole
+    
+    def get_cheese(self):
+        return self.cheese
+    
+    def get_pico(self):
+        return self.pico
+    
+    def get_corn(self):
+        return self.corn
+    
+    
+    def get_cost(self):
+        base_cost = 5.00
+        if(self.get_meat() in "chicken pork tofu"):
+            base_cost += 1
+        if(self.get_meat() in "steak"):
+            base_cost += 1.50
+        if((self.get_extra_meat() == True) and (self.get_meat())):
+            base_cost += 1.00
+        if(self.get_guacamole() == True):
+            base_cost += 0.75
+        return base_cost
+            
+
+def total_cost(list_Burrito):
+    total_cost = 0
+    for x in range(0, len(list_Burrito)):
+        total_cost += list_Burrito[x].get_cost()
+    return total_cost
+    
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs. Note that these lines
+#will ONLY work if you copy/paste your Burrito, Meat,
+#Beans, and Rice classes in.
+#
+#If your function works correctly, this will originally
+#print: 28.0
+burrito_1 = Burrito("tofu", True, "white", "black")
+burrito_2 = Burrito("steak", True, "white", "pinto", extra_meat = True)
+burrito_3 = Burrito("pork", True, "brown", "black", guacamole = True)
+burrito_4 = Burrito("chicken", True, "brown", "pinto", extra_meat = True, guacamole = True)
+burrito_list = [burrito_1, burrito_2, burrito_3, burrito_4]
+print(total_cost(burrito_list))
+
+===================================================================================  Coding Problem 5.2.1
+#We've started a recursive function below called
+#measure_string that should take in one string parameter,
+#myStr, and returns its length. However, you may not use
+#Python's built-in len function.
+#
+#Finish our code. We are missing the base case and the
+#recursive call.
+#
+#HINT: Often when we have recursion involving strings, we
+#want to break down the string to be in its simplest form.
+#Think about how you could splice a string little by little.
+#Then think about what your base case might be - what is
+#the most basic, minimal string you can have in python?
+#
+#Hint 2: How can you establish the base case has been
+#reached without the len() function?
+
+#You may not use the built-in 'len()' function.
+
+def measure_string(myStr):
+    count = 0
+    if myStr:
+        for x in myStr:
+            count += 1
+        return count
+    else:
+        return count
+    
+    
+#The line below will test your function. As written, this
+#should print 13. You may modify this to test your code.
+print(measure_string("13 characters"))
+
+==================================================================================  2
+#Remember that Fibonacci's sequence is a sequence of numbers
+#where every number is the sum of the previous two numbers.
+#
+#For this problem, implement Fibonacci recursively, with a
+#twist! Imagine that we want to create a new number sequence
+#called Fibonacci-3. In Fibonacci-3, each number in the
+#sequence is the sum of the previous three numbers. The
+#sequence will start with three 1s, so the fourth Fibonacci-3
+#number would be 3 (1+1+1), the fifth would be 5 (1+1+3),
+#the sixth would be 9 (1+3+5), the seventh would be 17
+#(3+5+9), etc.
+#
+#Name your function fib3, and make sure to use recursion.
+
+
+#Write your code here!
+def fib3(num):
+    if num <= 3:
+       return 1
+    else:
+       return fib3(num - 1) + fib3(num - 2) + fib3(num - 3)
+        
+        
+
+
+#The lines below will test your code. If your funciton is
+#correct, they will print 1, 3, 17, and 57.
+print(fib3(3))
+print(fib3(4))
+print(fib3(7))
+print(fib3(9))
+
+=================================================================================  3
+#Recall in the lesson on sorts that we had you complete the
+#Bubble and Selection sort, and we showed you Merge sort.
+#We didn't show any of insertion sort, and I bet you can
+#guess why.
+#
+#Implement insertion sort below.
+#
+#Name your function 'insertion'. insertion should take as
+#input a list, and return as output a sorted list. Note that
+#even though technically a sorting method does not have to
+#return the sorted list, yours should.
+#
+#If you're stuck on where to start, or having trouble
+#visualizing or understanding how exactly insertion sort
+#works, check out this website - https://visualgo.net/sorting
+#It provides a visual representation of all of the sorting
+#algorithms as well as pseudocode you can base your own code
+#off of.
+
+
+#Write your code here!
+def insertion(a_list):
+     for index in range(1, len(a_list)):
+        current = a_list[index]
+        position = index
+
+        while position > 0 and a_list[position-1] > current:
+            a_list[position] = a_list[position-1]
+            position -= 1
+
+        a_list[position] = current
+
+     return a_list
+
+
+
+#The code below will test your function. If your function
+#works, it will print: [1, 2, 3, 4, 5].
+print( insertion([5, 1, 3, 2, 4]) )
+
+=================================================================================  4
+#Recall in 5.2.4 Worked Example 1, we gave you the code for
+#merge_sort. You may copy that code into this problem and
+#modify it. Change it such that instead of sorting from
+#lowest to highest, it sorts from highest to lowest.
+#
+#Name your function sort_with_merge(). For example, if you call
+#merge_sort([5, 3, 1, 2, 4]), you would get [5, 4, 3, 2, 1].
+#
+#Do not use Python's sort or reverse methods to complete
+#this.
+
+
+#Write your code below!
+def sort_with_merge(lst):
+    if len(lst) <= 1:
+        return lst
+    else:
+        midpoint = len(lst) // 2
+        left = sort_with_merge(lst[:midpoint])
+
+        #And same for the right side.
+        right = sort_with_merge(lst[midpoint:])
+
+        newlist = []
+        while len(left) and len(right) > 0:
+
+            if left[0] > right[0]:
+                newlist.append(left[0])
+                del left[0]
+
+            #Otherwise, add the first number from right
+            #to the new list and remove it from right
+            else:
+                newlist.append(right[0])
+                del right[0]
+
+
+        newlist.extend(left)
+        newlist.extend(right)
+
+        return newlist
+
+    
+
+
+#The code below will test your function. If it works, this
+#will print [5, 3, 1, -1, -3, -5].
+print(sort_with_merge([1, 3, -1, -3, -5, 5]))
+
+==============================================================================  5
+#Write a function called search_for_string() that takes two
+#parameters, a list of strings, and a string. This function
+#should return a list of all the indices at which the
+#string is found within the list.
+#
+#You may assume that you do not need to search inside the
+#items in the list; for examples:
+#
+#  search_for_string(["bob", "burgers", "tina", "bob"], "bob")
+#      -> [0,3]
+#  search_for_string(["bob", "burgers", "tina", "bob"], "bae")
+#      -> []
+#  search_for_string(["bob", "bobby", "bob"])
+#      -> [0, 2]
+#
+#Use a linear search algorithm to achieve this. Do not
+#use the list method index.
+#
+#Recall also that one benefit of Python's general leniency
+#with types is that algorithms written for integers easily
+#work for strings. In writing search_for_string(), make sure
+#it will work on integers as well -- we'll test it on
+#both.
+
+
+#Write your code here!
+def search_for_string(a_list, myStr):
+    new_list = []
+    for x in range(len(a_list)):
+        if myStr == a_list[x]:
+            new_list.append(x)
+    return new_list
+        
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: [1, 4, 5]
+sample_list = ["artichoke", "turnip", "tomato", "potato", "turnip", "turnip", "artichoke"]
+print(search_for_string(sample_list, "turnip"))
+
+=============================================================================================  6
+#Recall in Worked Example 5.2.5 that we showed you the code
+#for two versions of binary_search: one using recursion, one
+#using loops. For this problem, use the recursive one.
+#
+#In this problem, we want to implement a new version of
+#binary_search, called binary_search_year. binary_search_year
+#will take in two parameters: a list of instances of Date,
+#and a year as an integer. It will return True if any date
+#in the list occurred within that year, False if not.
+#
+#For example, imagine if listOfDates had three instances of
+#date: one for January 1st 2016, one for January 1st 2017,
+#and one for January 1st 2018. Then:
+#
+#  binary_search_year(listOfDates, 2016) -> True
+#  binary_search_year(listOfDates, 2015) -> False
+#
+#You should not assume that the list is pre-sorted, but you
+#should know that the sort() method works on lists of dates.
+#
+#Instances of the Date class have three attributes: year,
+#month, and day. You can access them directly, you don't
+#have to use getters (e.g. myDate.month will access the
+#month of myDate).
+#
+#You may copy the code from Worked Example 5.2.5 and modify
+#it instead of starting from scratch. You must implement
+#binary_search_year recursively.
+#
+#Don't move this line:
+from datetime import date
+
+
+#Write your code here!
+def binary_search_year(searchList, searchTerm):
+    searchList.sort()
+    if len(searchList) == 0:
+        return False
+    middle = len(searchList) // 2
+    if searchList[middle].year == searchTerm:
+        return True
+    elif searchTerm < searchList[middle].year:
+        return binary_search_year(searchList[:middle], searchTerm)
+    else:
+        return binary_search_year(searchList[middle + 1:], searchTerm)
+   
+    
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: True, then False
+listOfDates = [date(2016, 11, 26), date(2014, 11, 29), 
+               date(2008, 11, 29), date(2000, 11, 25), 
+               date(1999, 11, 27), date(1998, 11, 28), 
+               date(1990, 12, 1), date(1989, 12, 2), 
+               date(1985, 11, 30)]
+
+print(binary_search_year(listOfDates, 2016))
+print(binary_search_year(listOfDates, 2007))
+
+==================================================================================  7
