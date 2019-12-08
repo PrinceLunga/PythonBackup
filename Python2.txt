@@ -1,104 +1,1506 @@
-dividend = 7
-divisor = 3
+years = 0
+days = 0
+months = 5
 
 #You may modify the lines of code above, but don't move them!
 #When you Submit your code, we'll change these lines to
 #assign different values to the variables.
 
-#The variables above create a dividend and a divisor. Add
-#some code below that will print the quotient and remainder
-#of performing this operation. The quotient should be the
-#whole number, not the decimal number: for example, with the
-#original values of dividend and divisor (7 and 3), your code
-#should print 2, then 1: 3 goes into 7 two whole times, with
-#one left over.
+#Ever been at a loss for what to do for your significant
+#other for Valentine's Day? Let's right some code to generate
+#a gift recommendation!
 #
-#Print the quotient and remainder each on their own line.
-#Both values should be integers: there should be no decimals.
+#The variables above give the length of the relationship in
+#number of years, months, and days. Add some code below to
+#print a gift recommendation based on these values:
+#
+# - If you've been dating for at least 4 years, give them a
+#   dog ("dog").
+# - If you've been dating for at least 1 year but less than
+#   4 years, give them a watch ("watch").
+# - If you've been dating for at least 6 months but less than
+#   1 year, give them concert tickets ("concert tickets").
+# - If you've been dating for at least a day but less than 6
+#   months, give them candy ("candy").
+# - If aren't actually dating, go big or go home: give them
+#   a yacht to sail away together ("yacht").
+#
+#Note that no matter what, you should only print one gift.
 
 
 #Add your code here!
-print(dividend ** divisor)
-print(dividend % divisor)
+if(years == 0 and months == 0 and days == 0):
+     print("yacht")
+elif years >= 4:
+    print("dog")
+elif years >= 1 and years <= 4:
+    print("watch")
+elif months >= 6 and years <= 1:
+    print("concert tickets")
+elif days >= 1 or months < 6:
+    print("candy")
 
-============================================   2
-amount = 67
-
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
-#
-#Write a program that will print out the coins needed to
-#arrive at the amount shown above. Assume that we always want
-#the maximum number of large coins: for example, for 67 cents,
-#we want 2 quarters, 1 dime, 1 nickel, and 2 pennies instead
-#of 6 dimes and 7 pennies.
-#
-#If you are unfamiliar with American currency: a quarter is
-#worth 25 cents; a dime is worth 10 cents; a nickel is worth
-#5 cents; a penny is worth 1 cent.
-#
-#To make things easier, we've gone ahead and supplied your
-#print statements. All you need to do is create four variables:
-#quarters, dimes, nickels, and pennies.
-#
-#HINT: Change the value of amount as you go to reflect what
-#coins you've already found.
-
-
-#Add your code here!
-
-
-
-#If your code above is correct, the following lines will
-#initially print (for amount = 67):
-#Quarters: 2
-#Dimes: 1
-#Nickels: 1
-#Pennies: 2
-print("Quarters:", quarters)
-print("Dimes:", dimes)
-print("Nickels:", nickels)
-print("Pennies:", pennies)
-
-============================================    3
-meal_cost = 10.00
-tax_rate = 0.08
-tip_rate = 0.20
+===================================================  2
+hour = 11
+minute = 25
 
 #You may modify the lines of code above, but don't move them!
 #When you Submit your code, we'll change these lines to
 #assign different values to the variables.
 
-#When eating at a restaurant in the United States, it's
-#customary to have two percentage-based surcharges added on
-#top of your bill: sales tax and tip. These percentages are
-#both applies to the original cost of the meal. For example,
-#a 10.00 meal with 8% sales tax and 20% tip would add 0.80
-#for tax (0.08 * 10.00) and 2.00 for tip (0.20 * 10.00).
+#Around Georgia Tech, there are plenty of places to get a
+#late night bite to eat. However, they have different hours,
+#so when choosing where to go, you have to think about who's
+#still open!
 #
-#The variables above create the cost of a meal and identify
-#what percentage should be charged for tax and tip.
+#Imagine you're choosing between the following restaurants:
 #
-#Add some code below that will print the "receipt" for a
-#meal purchase. The receipt should look like this:
+# - Barrelhouse: Closes at 11:00PM 11,10,9,8,7,6
+# - Taco Bell: Closes at 2:00AM 1,2,12,11,10,9,8,7,6
+# - Cookout: Closes at 3:00AM    1,2,3,12,11,10,9,8,7,6
+# - Waffle House: Never closes. Ever. 1,2,3,4,5
 #
-#Subtotal: 10.00
-#Tax: 0.8
-#Tip: 2.0
-#Total: 12.8
+#Assume that this list is also a priority list: if Barrelhouse
+#is open, you choose Barrelhouse. If not, you choose Taco Bell
+#if it's open. If not, you choose Cookout if it's open. If
+#not, you choose Waffle House.
 #
-#Subtotal is the original value of meal_cost, tax is the
-#tax rate times the meal cost, tip is the tip rate times
-#the meal cost, and total is the sum of all three numbers.
-#Don't worry about the number of decimal places; it's fine
-#if your code leaves off some numbers (like 0.8 for tax) or
-#includes too many decimal places (like 2.121212121 for tip).
+#However, there are two wrinkles:
+#
+# - We're using 12-hour time.
+# - hour will always represent a time from 10PM to 5AM.
+#
+#That means that if hour is 10 or 11, it's PM; if hour is
+#12, 1, 2, 3, 4, or 5, it's AM. This will make your reasoning
+#a little more complex. You may assume that all four
+#restaurants open later than 6AM, though, so you don't have
+#to worry about opening time, just closing time.
+#
+#Add some code below that will print what restaurant you'll
+#go to based on the current values of hour and minute.
+
+
+#Add your code here!
+if(hour <= 2):
+    
+    if(hour <= 2 ): 
+        if(minute == 0 and hour == 2):
+           print("Taco Bell")
+        
+        elif(hour <= 1 ):
+            print("Taco Bell")
+        
+        elif(hour <= 2):
+            print("Cookout")
+            
+        elif(hour >= 2 and minute > 0):
+            print("Cookout")
+        
+        elif( hour <= 1):
+           print("Waffle House")
+                             
+elif(hour <= 3):
+    
+    if( hour <= 2 ): 
+      if(minute == 0 and hour == 2):
+           print("Taco Bell")
+        
+    elif(hour >= 3 and minute > 0): 
+        print("Waffle House") 
+        
+    elif(minute == 0 and hour == 3):
+           print("Cookout")   
+
+elif( hour >= 4 and hour <= 6):
+    print("Waffle House")
+    
+elif(hour >= 3 and hour <= 12):
+    
+    if(hour <= 12 and hour >= 11 ):
+              print("Taco Bell")
+        
+    elif( hour <= 11 and hour <= 4):
+          print("Cookout")
+        
+    elif( hour <= 11 and hour < 5 ):
+          print("Waffle House")
+            
+    elif( hour <= 11 and hour >= 5):
+        print("Barrelhouse")
+            
+
+=============================================  3
+rating = "R"
+age = 16
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#The United States has a movie rating system that rates
+#movies with one of five ratings: G, PG, PG-13, R, and NC-17.
+#Although some of the ratings are not binding, imagine that
+#you are a parent who decides on the following rules:
+#
+# - Any child can see a G-rated movie.
+# - To see a PG-rated movie, your child must be 8 or older.
+# - To see a PG-13-rated movie, your child must be 13 or older.
+# - To see an R-rated movie, your child must be 17 or older.
+# - Your child may never see an NC-17 movie.
+#
+#The variables above give a rating and a child's age. Use
+#these variables to select and print one of these two
+#messages based on the criteria above:
+#
+# - "You may see that movie!"
+# - "You may not see that movie!"
+#
+#However, there's one trick: you may not use the 'and' operator
+#anywhere in this code!
+
+
+#Add your code here!
+if( rating == "G" ):
+         print("You may see that movie!")
+  
+elif( rating == "PG"):
+    if( age >= 8 ):
+        print("You may see that movie!")
+        
+    elif( age < 8 ):
+        print("You may not see that movie!")
+  
+elif(rating == "PG-13"):
+    if(age >= 13 ):
+        print("You may see that movie!")
+        
+    elif( age < 13):
+        print("You may not see that movie!")
+
+elif( rating == "R"):
+    if( age >= 17 ):
+        print("You may see that movie!")
+    
+    elif(age < 17 ):
+        print("You may not see that movie!")
+
+elif( rating == "NC-17"):
+    print("You may not see that movie!")
+
+===================================================  4
+cafe = "Octane"
+balance = 7.5
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Atlanta is full of great coffee places. Unfortunately, great
+#coffee is usually expensive. The variables above will
+#contain a balance and a cafe name. Below are the prices of
+#a cup of coffee at each of three locations:
+#
+# - Octane: $6
+# - Galloway: $5
+# - Starbucks: $4
+# - Revelator: $3
+# - Dunkin: $2
+#
+#Add some code above that will print one of the following
+#two messages depending on whether the value of balance is
+#high enough to buy a cup of coffee at the given cafe.
+#
+# - If it is sufficient, print "With [balance] dollars, I
+#   can buy coffee at [cafe]"
+# - If it is not sufficient, print "With [balance] dollars,
+#   I cannot buy coffee at [cafe]"
 
 
 #Add your code here!
 
-======================================================  4
+if( cafe == "Octane" ):
+    if(balance >= 6):
+        print("With "+ str(balance) +" dollars, I can buy coffee at", str(cafe))
+    else:
+        print("With "+ str(balance) +" dollars, I cannot buy coffee at",str(cafe))
+       
+elif( cafe == "Galloway" ):
+    if(balance >= 5):
+        print("With "+ str(balance) +" dollars, I can buy coffee at",str(cafe))
+    else:
+        print("With "+ str(balance) +" dollars, I cannot buy coffee at",str(cafe))
+        
+elif( cafe == "Starbucks" ):
+    if(balance >= 4):
+        print("With "+ str(balance) +" dollars, I can buy coffee at", str(cafe) )
+    else:
+        print("With "+ str(balance) + " dollars, I cannot buy coffee at", str(cafe))
+        
+elif( cafe == "Revelator" ):
+    if(balance >= 3):
+        print("With "+ str(balance) +" dollars, I can buy coffee at", str(cafe) )
+    else:
+        print("With "+ str(balance) +" dollars, I cannot buy coffee at", str(cafe))
+        
+elif( cafe == "Dunkin" ):
+    if(balance >= 2):
+        print("With "+ str(balance) +" dollars, I can buy coffee at", str(cafe))
+    else:
+        print("With "+ str(balance) +" dollars, I cannot buy coffee at", str(cafe))
+
+
+==================================================================  5
+principal = 5000
+rate = 0.05
+time = 5
+goal = 6300
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Recall in problem 2.4.5 you wrote some code that calculated
+#the amount of money in an account based on this formula:
+#
+#   amount = principal * e ^ (rate * time)
+#
+#Those three variables are given above again, as well as a
+#fourth: goal. We want to see if the investment given by
+#these values will exceed the goal. If it will, we want to
+#print this message:
+#
+#  "You'll exceed your goal by [extra money]"
+#
+#If it will not, we want to print this message:
+#
+#  "You'll fall short of your goal by [needed money]"
+#
+#If the investor will meet their goal, [extra money] should
+#be the final amount minus the goal. If the investor will
+#not meet their goal, [needed money] will be the goal minus
+#the final amount.
+#
+#To make the output more legible, though, we want to round
+#the difference to two decimal places. If the difference is
+#contained in a variable called 'difference', then we can
+#do this to round it: rounded_diff = round(difference, 2)
+#
+#Working with new and unfamiliar functions or abilities is
+#part of learning to code, so use this function in your
+#answer!
+
+import math
+
+#Remember, you can access e with math.e.
+
+
+#Add your code here! Feel free to copy your code from 
+#problem 2.4.5.
+
+amount = principal * math.e ** (rate * time)
+
+difference = goal - amount
+
+
+rounded_diff = round(difference, 2) * (-1)
+
+
+if( rounded_diff < 0 ):
+    print("You'll fall short of your goal by", rounded_diff * (-1))
+    
+elif( rounded_diff > 0 ):
+     print("You'll exceed your goal by", rounded_diff )
+   
+=========================================================  6
+egg = True
+milk = True
+butter = True
+flour = True
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Imagine you're deciding what you want to cook. The boolean
+#variables above state whether or not you have each of those
+#four ingredients.
+#
+#Here are the dishes you know how to cook and their
+#ingredients:
+#
+# 1. pancakes: egg, milk, butter, flour
+# 2. omelette: egg, milk, butter
+# 3. custard: egg, milk
+# 4. poached eggs: egg
+#
+#The list above is also a priority list. If you have the
+#ingredients for pancakes, you'll make pancakes instead of
+#any of the other dishes. If you're missing flour but have
+#the other ingredients, you'll make an omlette. You'll only
+#make poached eggs if the only ingredient you have is eggs.
+#
+#Complete the program below such that it prints which dish
+#you'll make based on the ingredients you have handy. All
+#the dishes should appear exactly as shown above: all lower
+#case, spelled the same way. If you do not have the
+#ingredients to make any of these dishes, then print the
+#text "Go to the store!"
+
+
+#Add your code here!
+if( egg == True and milk == True and butter == True and flour == True):
+    print("pancakes")
+    
+elif( egg == True and milk == True and butter == True):
+    print("omelette")
+    
+elif( egg == True and milk == True):
+    print("custard")
+    
+elif(egg == True):
+    print("poached eggs")
+    
+else:
+    print("Go to the store!")
+
+============================================================= 7
+story = "A"
+text = "B"
+role = "C"
+director = "D"
+cast = "F"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+#
+#In Bryan Cranston's autobiography, he describes how after
+#his success on Breaking Bad, he developed a scoring system
+#for evaluating new scripts that he received.
+#
+#First, he would assign the script a grade -- A, B, C, D, or
+#F -- in each of five categories: Story, Text, Role, Director,
+#and Cast.
+#
+#Then, he would tally those grades into a total score for the
+#script, according to the following chart:
+#
+#            A   B   C   D   F
+# Story     +6  +5  +4  +2  +0
+# Text      +5  +4  +3  +1  +0
+# Role      +4  +3  +2  +1  +0
+# Director  +3  +2  +1  +0  +0
+# Cast/Misc +2  +1  +0  +0  +0
+#
+#For example: an A story, B text, C role, D directory, and
+#F cast would get a score of 12: +6 for the story, +4 for the
+#text, +2 for the role, +0 for the director, and +0 for the
+#cast.
+#
+#Then, based on that score, the script would be assigned a
+#category (note these are slightly different from the image
+#because we've excluded the time variable):
+#
+# 20: Perfect score
+# 17 to 19: Must do
+# 14 to 16: Seriously consider
+# 12 to 13: On the bubble
+# 11 or below: Pass
+#
+#The variables above give the letter grades assigned to each
+#of the five components. Write a program that calculates the
+#total score he would assign to the script represented by
+#these variables. Then on the next line, print the category
+#he would assign to that script. For example, for the values
+#above, this program would print:
+#
+#12
+#Pass
+#
+#HINT: This is a *long* program. It's not particularly
+#complex -- you're doing the same thing over and over, However,
+#that 'same thing' required 4-8 lines each time you do it. Our
+#answer is 46 lines long! So, don't think you're off-track just
+#because you're writing a lot of lines.
+
+
+#Add your code here!
+
+if( story == "A"):
+    story = 6
+elif( story == "B"):
+    story = 5
+elif( story == "C"):
+    story = 4
+elif( story == "D"):
+    story = 2
+elif( story == "F"):
+    story = 0
+
+if( text == "A"):
+    text = 5
+elif( text == "B"):
+    text = 4
+elif( text == "C"):
+    text = 3
+elif( text == "D"):
+    text = 1
+elif( text == "F"):
+    text = 0
+    
+    
+if( role == "A"):
+    role = 4
+elif( role == "B"):
+    role = 3
+elif( role == "C"):
+    role = 2
+elif( role == "D"):
+    role = 1
+elif( role == "F"):
+    role = 0
+    
+if( director == "A"):
+    director = 3
+elif( director == "B"):
+    director = 2
+elif( director == "C"):
+    director = 1
+elif( director == "D"):
+    director = 0
+elif( director == "F"):
+    director = 0
+    
+if( cast == "A"):
+    cast = 2
+elif( cast == "B"):
+    cast = 1
+elif( cast == "C"):
+    cast = 0
+elif( cast == "D"):
+    cast = 0
+elif( cast == "F"):
+    cast = 0
+    
+total = story + text + role + director + cast
+
+if(total >= 20):
+    print(total)
+    print("Perfect score")
+elif(total >= 17 and total <= 19):
+    print(total)
+    print("Must do")
+elif(total >= 14 and total <= 16):
+    print(total)
+    print("Seriously consider")
+elif(total >= 12 and total <= 13):
+    print(total)
+    print("On the bubble")
+elif(total <=11):
+    print(total)
+    print("Pass")
+
+========================================================  8
+clarity = "VS"
+color = "E"
+carat = 1.1
+preferred_cuts = ["Emerald", "Cushion", "Princess", "Oval"]
+budget = 500
+cut = "Emerald"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Diamonds are typically evaluated according to four aspects:
+# - Cut: The way the diamond is cut
+# - Clarity: How clear or flawless the diamond is, rated
+#   as F (the best), IF, VVS, VS, SI, or I (the worst)
+# - Color: How colorless the diamond is, rated from "D" (the
+#   best) to "Z" (the worst)
+# - Carat: How large the diamond is, weighed in carats
+#
+#Cut is usually a matter of personal preference. Clarity,
+#color, and carat are matters of value: the clearer, more
+#colorless, and larger a diamond is, the greater its value.
+#
+#Imagine you're shopping for a diamond. You have your
+#preferred cuts, and you have a budget in mind. You're shown
+#a diamond whose characteristics are represented by the cut,
+#color, clarity, and carat variables above. You'll buy the
+#diamond if its cost is less than your budget, and if its
+#cut is one of your preferred cuts.
+#
+#At this store, every diamond has a base cost of 100.
+#
+#For every color rating worse than "D", the cost decreases by
+#2%. An "F" color diamond would be worth 0.96 * the diamond
+#cost otherwise because "F" is two colors worse than "D".
+#
+#A diamond's value is doubled for every level of clarity above
+#I. A "VVS"-clarity diamond is worth 8 * the diamond cost
+#otherwise because "VVS" is three levels higher than I, and
+#doubling its value three times raises its value by 8x total.
+#
+#After finding its price based on color and clarity, its price
+#is multiplied by its weight in carats.
+#
+#Your program should print "I'll take it!" if you will buy the
+#diamond, "No thanks" if you will not. To purchase it, its price
+#must be less than your budget and its cut must be one of your
+#preferred cuts.
+#
+#HINT: You can find the number of characters between two
+#characters by using the ord() function. ord("E") - ord("D")
+#is 1; ord("Z") - ord("D") is 22.
+#
+#HINT 2: We haven't covered lists, but we did cover how to
+#see if an item is present in a list using the 'in' operator
+#in chapter 2.3.
+
+
+#Add your code here!
+
+cost = 100
+
+if(color != "D"):
+    diff = ord(color) - ord("D")
+    cost = cost - cost * ( diff / 100 * 100)
+    
+    
+if(clarity == "F"):
+        cost *= 10
+elif(clarity == "IF"):
+        cost *= 9
+elif(clarity == "VVS"):
+        cost *= 8
+elif(clarity == "VS"):
+        cost *= 7
+elif(clarity == "SI"):
+        cost *= 6
+elif(clarity == "I"):
+        cost *= 5
+
+cost *= carat 
+
+if(cost < budget):
+    if(cut in preferred_cuts):
+        print("I'll take it!")
+    else:
+        print("No thanks")
+else:
+    print("No thanks")
+    
+=================================================================== 9
+eclipse = False
+date = 26
+phase = "Full"
+distance = 230000
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#There are (at least) three special types of full moons:
+#
+# - Super Moon: the full moon occurs when the moon is at its
+#   closest approach to earth (less than 230,000km away).
+# - Blue Moon: the second full moon in a calendar month. In
+#   other words, any full moon on the 29th, 30th, or 31st of
+#   a month.
+# - Blood Moon: a lunar eclipse during a full moon.
+#
+#Write a program that will print out the type of moon --
+#"Full Moon", "Super Moon", "Blue Moon", "Blood Moon", based
+#on the values of the variables above. Note that for the moon
+#to be any of these special kinds of moons, it must also be
+#full.
+#
+#Note, though, that multiple modifiers can be true at the same
+#time. We could have a Super Blue Moon, a Blue Blood Moon, or
+#even a Super Blue Blood Moon.
+#
+#Always print those modifiers in that order. If any of these
+#special modifiers is present, do not include the word "Full".
+#If none of them are present, but the moon is Full, then print
+#"Full Moon". If none of them are present at all, print "Moon".
+
+
+#Add your code here!
+count = 0
+moon = ""
+
+if( distance <= 230000):
+   count += 1
+   moon +=" Super"
+  
+        
+if(date >= 29):
+  count += 1
+  moon += " Blue"
+        
+if(eclipse == True):
+    count += 1
+    moon += " Blood"
+
+if(phase == "Full"):
+    if(count >= 1):
+        print(moon, "Moon")
+        
+        
+    elif(count <= 1):
+      if(distance > 230000):
+         print("Full Moon")
+         
+elif(phase != "Full"):
+      print("Moon")
+
+
+=================================================== 3.3.1
+mystery_int = 7
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Write a for loop that prints every third number from 1 to
+#mystery_int inclusive (meaning that if mystery_int is 7, it
+#prints 1, 4, and 7). Print each number on a separate line.
+#
+#Hint: There are multiple ways to do this! You might use the
+#modulus operators, or you could use the third argument for
+#range().
+
+
+#Add your code here!
+
+for i in range(1, mystery_int + 1, 3):
+    print(i)
+  
+================================================== 2
+mystery_int = 50
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Add some code below that will find and print the sum of
+#every odd number between 0 and mystery_int. This time,
+#exclude the bounds (e.g. if mystery_int was 51, add the odds
+#from 1 to 49, but not 51).
+#
+#Hint: There are multiple ways to do this!
+
+
+#Add your code here!
+odd = 0
+for i in range(1, mystery_int):
+    if( not i % 2 == 0):
+        odd += i
+print(odd)
+        
+================================================ 3
+mystery_int = 7
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Use a loop to find the sum of all numbers between 0 and
+#mystery_int, including bounds (meaning that if
+#mystery_int = 7, you add 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7).
+#
+#However, there's a twist: mystery_int might be negative.
+#So, if mystery_int was -4, you would -4 + -3 + -2 + -1 + 0.
+#
+#There are a lot of different ways you can do this. Most of
+#them will involve using a conditional to decide whether to
+#add or subtract 1 from mystery_int.
+#
+#You may use either a for loopor a while loop to solve this,
+#although we recommend using a while loop.
+
+
+#Add your code here!
+
+sumValues = 0
+
+
+if(mystery_int < 0):
+    for i in range(mystery_int,0):
+        sumValues += i
+elif(mystery_int > 0):
+    for i in range(0,mystery_int + 1):
+        sumValues += i
+print(sumValues)
+
+================================================ 4
+mystery_character = "a"
+mystery_string = "Hello! What a fine day it is today."
+
+#-----------------------------------------------------------
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Write some code below that will count and print how many
+#times mystery_character appears in mystery_string. You may
+#not use the string class's .count method.
+#
+#With the original values for mystery_string and
+#mystery_character, your code should initially print 4. Only
+#count characters with the same case as mystery_character
+#(in other words, here you would ignore capital A).
+
+
+#Add your code here!
+
+count = 0
+
+#for i in range(0, len(mystery_string)):
+for i in mystery_string:
+    if i == mystery_character:
+     count += 1        
+print(count)
+
+================================================ 5
+mystery_list = ["Taylor Swift", "Twenty Two", "Georgia Tech"]
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Above is a list of strings. Don't worry if this syntax is a
+#little unfamiliar, we'll talk you through it and then cover
+#it more in chapter 4.3.
+#
+#Write some code that will count the number of instances of
+#the letter 't' in the list of strings. Count both capital
+#'T' and lower-case 't'. Then, print the number of instances
+#of the letter 't'.
+#
+#For example, with the list declared above, you would print
+#6: two in the first string, three in the second, one in the
+#third.
+#
+#Because we haven't used lists very extensively, we've
+#gotten you started. The loop below will iterate through each
+#string in the list. Next, you want to iterate through each
+#letter in the current string, check if it's a t, and
+#increment a counter if so.
+
+
+#You'll want to add some code before the loop here.
+
+count = 0
+
+for string in mystery_list:
+    for i in string:
+    #Add your code to read through the string and count the
+    #t's and T's here!
+    
+        if i == 'T':
+            count += 1
+        elif i == 't':
+            count += 1
+        
+        
+
+#Add some code here to print the final tally!
+print(count)
+
+======================================================= 6
+mystery_int = 46
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Use a while loop to create a countdown from mystery_int to
+#0. Count down by 3s: if mystery_int is 46, then you should
+#print 46, 43, 40, etc. Do not print any number lower than 0.
+#Note that you should print both the original value of
+#mystery_int and 0 if you land on it exactly.
+
+
+#Add your code here!
+
+while(mystery_int >= 0):
+    if mystery_int >= 0:
+        print(mystery_int)
+    mystery_int -= 3
+   
+=====================================================  7
+start_character = "A"
+end_character = "Z"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Print all the letters from start_character to end_character,
+#each on their own line. Include start_character and
+#end_character themselves.
+#
+#Remember, you can convert a letter to its underlying ASCII
+#number using the ord() function. ord("A") would give 65.
+#ord("Z") would give 90. You can use these values to write
+#your loop.
+#
+#You can also convert an integer into its corresponding ASCII
+#character using the chr() function. chr(65) would give "A".
+#chr(90) would give "Z". So, for this problem, you'll need
+#to convert back and forth between ordinal values and
+#characters based on whether you're trying to loop over
+#numbers or print letters.
+#
+#You may assume that both start_character and end_character
+#are uppercase letters (although you might find it fun to
+#play around and see what happens if you put other characters
+#in instead!).
+
+
+#Add your code here! With the original values for
+#start_character and end_character, this will print the
+#letters from A to Z, each on their own line.
+
+start = ord(start_character)
+
+end = ord(end_character)
+
+for i in range(start,end+1):
+    print(chr(i))
+    
+=========================================================  8
+beats_per_measure = 4
+measures = 5
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Recall our earlier problem where you printed out beats based
+#on measures and beats per measure (3.3.5 Coding Exercise 1).
+#In that exercise, you printing out 1 through the number of beats
+#in a measure over and over depending on the number of measures.
+#
+#Copy and modify your code, but this time, you should replace the
+#number 1 with the number of the current measure. So, the first
+#number in each measure will always rise.
+#
+#For example, instead of 1 2 3 4 1 2 3 4 1 2 3 4 (with each
+#number on its own line), you'd now print 1 2 3 4 2 2 3 4 3 2 3 4,
+#and so on.
+#
+#You can use our sample answer from that problem if you'd prefer.
+#
+#HINT: One approach would involve adding a conditional.
+
+
+#Add your code here! Using the original values of the variables
+#above, this will initially print the following numbers (but each
+#on their own line):
+#1 2 3 4 2 2 3 4 3 2 3 4 4 2 3 4 5 2 3 4
+
+
+for i in range(1, measures + 1):
+    print(i)
+    for j in range (2,beats_per_measure + 1):
+        print(j)
+
+===============================================================  9
+lyrics = ["I wanna be your endgame", "I wanna be your first string", "I wanna be your A-Team", "I wanna be your endgame, endgame"]
+
+lines_of_sanity = 6
+
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Recall the Earworm problem (3.3.5 Coding Exercise 2). The
+#first time, you would still finish printing the entire list
+#of lyrics after lines_of_sanity was exceeded.
+#
+#Revise that code so that you always stop when lines_of_sanity
+#is reached. If lines_of_sanity is 6, you would print 6 lines,
+#no matter how many lines are in the list. If there are fewer
+#than 6 lines in the list, then you'd repeat the list until
+#the number of lines is reached.
+#
+#For example, with the values above, you'd print:
+#I wanna be your endgame
+#I wanna be your first string
+#I wanna be your A-Team
+#I wanna be your endgame, endgame
+#I wanna be your endgame
+#I wanna be your first string
+#MAKE IT STOP
+#
+#That's 6 lines: the entire list once, then the first two lines
+#again to reach 6. As before, print MAKE IT STOP when you're
+#done.
+#
+#HINT: There are multiple ways to do this: some involve a small
+#change to our earlier answer, others involve a more wholesale
+#rewrite. If you're stuck on one, try to think of a totally
+#different way!
+
+
+#Add your code here! Using the initial inputs from above, this
+#should print 7 lines: all 4 lines of the list, then the first
+#two lines again, then MAKE IT STOP
+
+total = 0
+
+for j in range(0, lines_of_sanity, + len(lyrics)):
+    for i in range(0,len(lyrics)):   
+        total += 1
+        if(total <= lines_of_sanity):
+                print(lyrics[i])
+
+        
+print("MAKE IT STOP")
+   
+================================================================  10
+mystery_int = 5
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#This is a tough one! Stick with it, you can do it!
+#
+#Write a program that will print the times table for the
+#value given by mystery_int. The times table should print a
+#two-column table of the products of every combination of
+#two numbers from 1 through mystery_int. Separate consecutive
+#numbers with either spaces or tabs, whichever you prefer.
+#
+#For example, if mystery_int is 5, this could print:
+#
+#1	2	3	4	5
+#2	4	6	8	10
+#3	6	9	12	15
+#4	8	12	16	20
+#5	10	15	20	25
+#
+#To do this, you'll want to use two nested for loops; the
+#first one will print rows, and the second will print columns
+#within each row.
+#
+#Hint: How can you print the numbers across the row without
+#starting a new line each time? With what you know now, you
+#could build the string for the row, but only print it once
+#you've finished the row. There are other ways, but that's
+#how to do it using only what we've covered so far.
+#
+#Hint 2: To insert a tab into a string, use the character
+#sequence "\t". For example, "1\t2" will print as "1	2".
+#
+#Hint 3: Need to just start a new line without printing
+#anything else? Just call print() with no arguments in the
+#parentheses.
+#
+#Hint 4: If you're stuck, try first just printing out all
+#the products in one flat list, each on its own line. Once
+#that's working, then worry about how to organize it into
+#a table.
+
+
+#Add your code here!
+tally = 0
+row = ""
+column = ""
+b = 0
+
+
+for i in range(1,mystery_int+2):  
+    
+    if tally == mystery_int:     
+           print(column)
+           column = ""
+           tally = 0
+           #print()
+    
+   
+    for j in range(1,mystery_int+1): 
+        tally += 1
+        b = i * j
+        column += str(b) + "\t"
+
+=============================================================== 11
+mystery_string = "Lucy"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#There's an easy way to do this exercise, and a hard way. For
+#a hint on the easier way, revisit the sample answers for the
+#previous coding exercise.
+#
+#Above we've created a variable called mystery_string. Write
+#some code that will print the first letter of the string on
+#the first line, the first two letters on the second line,
+#the first three letters on the third line, etc., until it
+#prints the entire string on the last line.
+#
+#For example, if the string was "Lucy", then the output would
+#be:
+#
+#L
+#Lu
+#Luc
+#Lucy
+#
+#Hint: to print without automatically starting a new line,
+#include the text end="" inside the print statement's
+#parentheses. For example, print("Hello", end="") will print
+#the word "Hello" without starting a new line afterward. So,
+#calling it twice would print "HelloHello" on one line
+#instead of two lines.
+
+
+#Add your code here!
+
+character = ""
+
+for i in range(len(mystery_string)):    
+    character += mystery_string[i]    
+    print(character)
+
+=============================================================  12
+mystery_string = "my cat your cat"
+
+#You may modify the lines of code above, but don't move them!
+#When you Submit your code, we'll change these lines to
+#assign different values to the variables.
+
+#Add some code below that will count and print how many
+#times the character sequence "cat" appears in mystery_string.
+#For example, for the string above, it would print 2.
+#
+#This one is tricky! Think carefully about for-each loops,
+#conditionals, and booleans. How can you track what character
+#you're currently looking for? We expect you'll use a loop
+#and a single big conditional, but there are other approaches
+#as well. Try to stick with the topics we've covered so far.
+
+
+#Add your code here!
+
+character = "cat"
+word = ""
+count = 0
+
+word = mystery_string.split()
+
+for i in range(len(word)):
+    if(word[i] == character):
+        count += 1
+print(count)
+    
+======================================================== Problem Set 3
+
+#Write a function called hide_and_seek. The function should
+#have no parameters and return no value; instead, when
+#called, it should just print the numbers from 1 through 10,
+#follow by the text "Ready or not, here I come!". Each
+#number and the message at the end should be on its own
+#line.
+#
+#Then, call the function.
+#
+#There should be no print statements outside the function.
+
+
+#Write your function here!
+
+def hide_and_seek():
+    for i in range(1,11):
+        print(i)
+    print("Ready or not, here I come!")
+
+
+
+#Call your function here!
+hide_and_seek()
+
+====================================================  2
+#In the previous coding problem, you created a function
+#called hide_and_seek that printed the numbers from 1 to 10.
+#Now, however, we want to extend that. What if we want to
+#count to 20? 30?
+#
+#Modify your previous function so that it takes as input one
+#parameter: count. Then, instead of printing the numbers from
+#1 to 10, it should print the numbers from 1 to the value of
+#count. Then, end with "Ready or not, here I come!"
+
+
+#Write your function here!
+
+def hide_and_seek(count):
+    for i in range(1,count+1):
+        print(i)
+    print("Ready or not, here I come!")
+
+
+
+#The function call below will test your function. We'll delete
+#and overwrite this with other calls to hide_and_seek with
+#different numbers during grading:
+hide_and_seek(36)
+
+=====================================================  3
+#A year is considered a leap year if it abides by the
+#following rules:
+#
+#  - Every 4th year IS a leap year, EXCEPT...
+#  - Every 100th year is NOT a leap year, EXCEPT...
+#  - Every 400th year IS a leap year.
+#
+#This starts at year 0. For example:
+#
+#  - 1993 is not a leap year because it is not a multiple of 4.
+#  - 1996 is a leap year because it is a multiple of 4.
+#  - 1900 is not a leap year because it is a multiple of 100,
+#    even though it is a multiple of 4.
+#  - 2000 is a leap year because it is a multiple of 400,
+#    even though it is a multiple of 100.
+#
+#Write a function called is_leap_year. is_leap_year should
+#take one parameter: year, an integer. It should return the
+#boolean True if that year is a leap year, the boolean False
+#if it is not.
+
+
+#Write your function here!
+
+def is_leap_year(year):
+    result = False
+    if (year % 4 == 0 ):
+        result = True 
+    if ( year % 100 == 0 ):
+        result = False
+    if (year % 400 == 0 ):
+        result = True     
+    return result
+    
+   
+   
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print False, True, False, and True, each preceded by the
+#label "[year] is a leap year:".
+print("1993 is a leap year:", is_leap_year(1993))
+print("1996 is a leap year:", is_leap_year(1996))
+print("1900 is a leap year:", is_leap_year(1900))
+print("2000 is a leap year:", is_leap_year(2000))
+
+=============================================================  4
+#Write a function called lucky_sevens that takes in one
+#parameter, a string variable named a_string. Your function
+#should return True if there are exactly three '7's in
+#a_string. If there are less than three or more than three
+#'7's, the function should return False.
+#
+#For example:
+#  - lucky_sevens("happy777bday") should return True.
+#  - lucky_sevens("h7app7ybd7ay") should also return True.
+#  - lucky_sevens("happy77bday") should return False.
+#  - lucky_sevens("h777appy777bday") should also return False.
+#
+#Hint: Remember in Chapter 3.3, we covered how to use a loop
+#to look at each character in a string.
+
+
+#Write your function here!
+def lucky_sevens(a_string):
+    count = 0
+    character = list(a_string)
+    result = False
+    for i in range (len(a_string)):
+      if ( character[i] == "7"):
+            count += 1
+    if( count == 3):
+     result = True
+    return result
+        
+          
+            
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: True, True, False, False, each on their own line.
+print(lucky_sevens("happy777bday"))
+print(lucky_sevens("h7app7ybd7ay"))
+print(lucky_sevens("happy77bday"))
+print(lucky_sevens("h777appy777bday"))
+
+=================================================================  5
+#In chemistry, the ideal gas law states:
+#
+# pressure * volume = # of moles * gas constant * temperature
+#
+#This is usually abbreviated to:
+#
+# PV = nRT
+#
+#We can solve this for any of these five variables, but let's
+#solve it for Pressure. In terms of Pressure, the ideal gas
+#law states:
+#
+# P = (nRT) / V
+#
+#Write a function called find_pressure that takes as input
+#three variables: number of moles, temperature, and volume.
+#You can call these variables in the function whatever you
+#want, but they must be specified in that order: moles, then
+#temperature, then volume. You should assume all three are
+#floats. Then, return as output your calculation for
+#pressure. For the gas constant, you should use the value 
+#0.082057.
+#
+#Hint: Python's rounding errors can change based on the
+#order of the multipliers. If you're having difficulty with
+#your answer being off by tiny fractions, change the order
+#of the numbers to match the order in the formula above.
+
+
+#Write your function here!
+
+def find_pressure(test_n, test_T, test_V):
+    return 0.082057 * test_n * test_T / test_V
+    
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: "Result: 48.905972000000006". The extra zeroes and
+#the 6 are rounding errors by Python.
+test_n = 10
+test_T = 298
+test_V = 5
+print("Result:", find_pressure(test_n, test_T, test_V))
+
+==========================================================  6
+#Last problem, we wrote a function that calculated pressure
+#given number of moles, temperature, and volume. We told you
+#to assume a value of 0.082057 for R. This value means that
+#pressure must be given in atm, or atmospheres, one of the
+#common units of measurement for pressure.
+#
+#atm is the most common unit for pressure, but there are
+#others: mmHg, Torr, Pa, kPa, bar, and mb, for example. what
+#if pressure was sent in using one of these units? Our
+#calculation would be wrong!
+#
+#So, we want to *assume* that pressure is in atm (and thus,
+#that R should be 0.082057), but we want to let the person
+#calling our function change that if need be. So, revise
+#your find_pressure function so that R is a keyword parameter.
+#Its default value should be 0.082057, but the person calling
+#the function can override that. The name of the parameter for
+#the gas constant must be R for this to work.
+#
+#As a reminder, you're writing a function that calculates:
+#
+# P = (nRT) / V
+#
+
+
+#Write your function here! You may copy your work from 3.4.5
+#if you'd like.
+def find_pressure(test_n, test_T, test_V, R = 0.082057):
+   return R * test_n * test_T / test_V
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: "Result: 37168.944".
+test_n = 10
+test_T = 298
+test_V = 5
+test_R = 62.364 #Torr!
+print("Result:", find_pressure(test_n, test_T, test_V, R = test_R))
+
+===================================================================  7
+#Basketball coach Phil Jackson says that in order for an NBA
+#team to be a contender for a championship, they need to win
+#40 games before they lose 20 games.
+#
+#Write a function called is_a_contender that will take three
+#parameters: a team name (a string), a number of wins (an
+#integer), and a number of losses (an integer).
+#
+#Based on these parameters, the function should return one
+#of three strings:
+#
+# - If the team is a contender (at least 40 wins and fewer
+#   than 20 losses), return "The [team name] are a contender!"
+# - If the team is not a contender (less than 40 wins and at least
+#   20 losses), return "The [team name] are not a contender!"
+# - If it cannot be determined (both values are higher or both
+#   values are lower), return "The [team name] might be a contender!"
+
+
+#Add your code here!
+
+def is_a_contender(team_name, wins, losses):
+    if( wins >= 40 and losses < 20):
+        return "The "+team_name+" are a contender!"
+    elif( wins < 40 and losses >= 20):
+        return "The "+team_name+" are not a contender!"
+    else:
+        return "The "+team_name+" might be a contender!"
+    
+    
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: "The Hawks are not a contender!".
+
+test_team_name = "Hawks"
+test_wins = 18
+test_losses = 40
+
+print(is_a_contender(test_team_name, test_wins, test_losses))
+
+================================================================  8
+#Consult this blood pressures chart: http://bit.ly/2CloACs
+#
+#Write a function called check_blood_pressure that takes two
+#parameters: a systolic blood pressure and a diastolic blood
+#pressure, in that order. Your function should return "Low",
+#"Ideal", "Pre-high", or "High" -- whichever corresponds to
+#the given systolic and diastolic blood pressure.
+#
+#You should assume that if a combined blood pressure is on the
+#line between two categories (e.g. 80 and 60, or 120 and 70),
+#the result should be the higher category (e.g. Ideal and
+#Pre-high for those two combinations).
+#
+#HINT: Don't overcomplicate this! Think carefully about in
+#what order you should check the different categories. This
+#problem could be easy or extremely hard depending on the
+#order you change and whether you use returns or elifs wisely.
+
+
+#Add your code here!
+
+def check_blood_pressure(systolic_blood_pressure, diastolic_blood_pressure):
+    result = ""
+    if(systolic_blood_pressure >= 140 and systolic_blood_pressure <= 190):
+        result = "High"        
+    elif(diastolic_blood_pressure >= 90 and diastolic_blood_pressure <= 100):
+        result = "High"     
+    elif(systolic_blood_pressure >= 120 and systolic_blood_pressure <= 140):
+        result = "Pre-high"        
+    elif(diastolic_blood_pressure >= 80 and diastolic_blood_pressure <= 90):
+        result = "Pre-high"        
+    elif(systolic_blood_pressure >= 90 and systolic_blood_pressure <= 120):
+        result = "Ideal"        
+    elif(diastolic_blood_pressure >= 60 and diastolic_blood_pressure <= 80):
+        result = "Ideal"        
+    elif(systolic_blood_pressure >= 70 and systolic_blood_pressure <= 90):
+        result = "Low"        
+    elif(diastolic_blood_pressure >= 40 and diastolic_blood_pressure <= 60):
+        result = "Low"
+    return result
+        
+    
+    
+    
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: Ideal
+test_systolic = 135
+test_diastolic = 95
+
+print(check_blood_pressure(test_systolic, test_diastolic))
+
+===================================================================  9
+#Recall Coding Problem 2.4.4. In that problem, you calculated
+#the damage done by an attack based on several parameters.
+#
+#Convert your code from there into two functions, one called
+#calculate_damage and one called calculate_modifier.
+#
+#Your function for calculate_damage must call calculate_modifier;
+#it may not calculate the modifier separately. As such,
+#calculate_damage should accept all ten parameters: STAB,
+#Type, Critical, Other, Random, Level, Attack, Defense, and
+#Base. You'll need to pass STAB, Type, Critical, Other, and
+#Random to calculate_modifier.
+#
+#Make sure the parameters to each function follow the order
+#shown above.
+#
+#As a reminder, damage is calculated using this formula:
+#courses.edx.org/asset-v1:GTx+CS1301xII+1T2018+type@asset+block@DamageCalc.png
+#
+#Modifier is calculated using this formula:
+#https://studio.edx.org/asset-v1:GTx+CS1301+1T2017+type@asset+block@ModifierCalc.png
+
+
+#Add your code here!
+
+
+def calculate_modifier(STAB, Type, Critical, Other, Random):
+    return STAB * Type * Critical * Other * (Random)
+    
+    
+    
+
+    
+def calculate_damage(STAB, Type, Critical, Other, Random, Level, Attack, Defense, Base):
+    a = 2 * Level + 10
+    b = Attack / Defense
+    modifier = calculate_modifier(STAB, Type, Critical, Other, Random)
+    damage = (( a / 250 * b * Base + 2) * modifier)
+    return damage
+    
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 16.0
 STAB = 1
 Type = 0.25
 Critical = 2
@@ -109,156 +1511,192 @@ Attack = 125
 Defense = 110
 Base = 60
 
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
+print(calculate_damage(STAB, Type, Critical, Other, Random, Level, Attack, Defense, Base))
 
-#In the Pokemon game franchise, damage is calculated using this formula:
-#https://studio.edx.org/asset-v1:GTx+CS1301+1T2017+type@asset+block@DamageCalc.png
+=============================================================================================  10
+#-----------------------------------------------------------
+#In this problem, you should write three functions:
+#word_count, letter_count, and average_word_length.
 #
-#In that formula, the variable Modifier is calculated using this formula:
-#https://studio.edx.org/asset-v1:GTx+CS1301+1T2017+type@asset+block@ModifierCalc.png
+#word_count should take as input a string. It should return
+#the number of words in the string. You may assume that the
+#number of words in the string will be one more than the
+#number of spaces in the string.
 #
-#Add code below such that the program prints the total damage
-#caused based on the STAB, Type, Critical, Other, Random,
-#Level, Attack, Defense, and Base given above.
+#letter_count should take as input a string. It should return
+#the number of letters in the string. You may assume that
+#the string is only letters and spaces: no punctuation or
+#numbers.
 #
-#Hint: Don't try to do all these calculations at once! Break
-#the complicated formual down into bite-sized little chunks.
+#average_word_length should take as input a string. It should
+#return the average length of the words in the string. You
+#can find the average length by dividing the number of letters
+#by the number of words.
+#
+#Your implementation for average_word_length *must* call
+#word_count and letter_count.
+
+
+#Add your code here!
+def word_count(word):
+    value = word.split(" ") 
+    return (len(value))
+    
+    
+    
+def letter_count(word):
+    value = word.split(" ")
+    a = 0
+    for i in value:
+     a +=  len(i)
+    return a
+   
+    
+def average_word_length(word):
+    a =letter_count(word) /  word_count(word)
+    return a
+
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print: 3.5
+a_string = "Up with the white and gold"
+
+print(average_word_length(a_string))
+
+=================================================================  11
+#There are a lot of use cases where we want to check to see
+#if a string has any invalid characters in it. For example,
+#when asking for a credit card number, we want to make sure
+#there are no non-numerals (although we might accept dashes
+#or spaces). When asking for a name, we want to make sure
+#all the characters are letters, spaces, or the occasional
+#punctuation mark.
+#
+#Write a function called is_valid. is_valid should take two
+#parameters: a string to check, and a string of all valid
+#characters.
+#
+#is_valid should return the boolean True if all the
+#characters in the string to check are present in the string
+#of valid characters. It should return False if any character
+#in the checked string does not appear.
+
+
+#Add your code here!
+def is_valid(s_check, s_all):
+    result = False
+    for i in s_check:
+        if i in s_all:
+            result = True
+        else:
+            result = False
+            break
+           
+    return result
+            
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
+#
+#If your function works correctly, this will originally
+#print True, then False
+sample_valid_string = "1234-5678-9011-1111"
+sample_invalid_string = "1234!5678.9011?1111"
+valid_characters = "0123456789-"
+
+print(is_valid(sample_valid_string, valid_characters))
+print(is_valid(sample_invalid_string, valid_characters))
+
+============================================================ 12
+#In this problem, your goal is to write a function that can
+#either count all the vowels in a string or all the consonants
+#in a string.
+#
+#Call this function count_letters. It should have two
+#parameters: the string in which to search, and a boolean
+#called find_consonants. If find_consonants is True, then the
+#function should count consonants. If it's False, then it
+#should instead count vowels.
+#
+#Return the number of vowels or consonants in the string
+#depending on the value of find_consonants. Do not count
+#any characters that are neither vowels nor consonants (e.g.
+#punctuation, spaces, numbers).
+#
+#You may assume the string will be all lower-case letters
+#(no capital letters).
 
 
 #Add your code here!
 
-================================================= 5
-principal = 5000
-rate = 0.05
-time = 5
-
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
-
-#One important formula in finance and accounting is the
-#formula for continually compounding interest. This formula
-#takes as input an amount of money invested, an interest
-#rate, and an amount of time (in years), and returns the
-#value of the investment after that period of time.
+def count_letters(search, find_consonants):
+    #In this problem, your goal is to write a function that can
+#either count all the vowels in a string or all the consonants
+#in a string.
 #
-#The formula is:
+#Call this function count_letters. It should have two
+#parameters: the string in which to search, and a boolean
+#called find_consonants. If find_consonants is True, then the
+#function should count consonants. If it's False, then it
+#should instead count vowels.
 #
-#   amount = principal * e ^ (rate * time)
+#Return the number of vowels or consonants in the string
+#depending on the value of find_consonants. Do not count
+#any characters that are neither vowels nor consonants (e.g.
+#punctuation, spaces, numbers).
 #
-#Add some code below that will find the amount of money in
-#an account with the initial investment, interest rate, and
-#number of years given by the variables above. Note,
-#however, that we've gone ahead and supplied you the print
-#statement: you shouldn't need to change this. Instead, just
-#complete this code such that the variable 'amount' is
-#created with the right value.
-#
-#Note that e is a constant; you may access it with math.e --
-#you can use math.e as a variable like any other after
-#importing math:
-
-import math
-
-#Add your code here such that there exists a variable named
-#'amount' with the amount in the account after the given
-#time at the given interest rate.
-
-
-#Don't touch the line of code below!
-print("After " + str(time) + " years invested with a " + str(rate) + " interest rate, a $" + str(principal) + " investment will be worth $" + str(round(amount, 2)) + ".")
-
-
-================================================================ 6
-start_hour = 3
-start_minute = 48
-length = 172
-
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
-
-#Let's try something trickier! The variables above represent
-#the start time for a run as well as the length of the run
-#in minutes. The original values, for example, show a run
-#that started at 3:48 and lasted 172 minutes.
-#
-#Add some code below that will print the time at which the
-#run will end, using normal formatting (e.g. 6:40 for the
-#original data above). To do this, you'll need to somehow
-#find both the hours and minutes of the new time, convert
-#both to strings, and add those to the colon ":" to print
-#the time.
-#
-#You may assume that the length of the run will never cross
-#12:59 (e.g. you don't have to worry about going from
-#12:59 to 1:00 or 23:59 to 0:00). You also don't need to
-#worry about the lack of 0 in front of single-digit minute
-#counts (e.g. it's fine to show 5:07 as 5:7).
+#You may assume the string will be all lower-case letters
+#(no capital letters).
 
 
 #Add your code here!
 
-======================================================= 7
-dosage = 100
-time_since_last_dose = 7
-is_nighttime = False
-took_something_cross_reactive = False
+def count_letters(search, find_consonants):
+    count = 0 
+    if find_consonants == False :
+        for i in search:
+            if i in "a" or i in "e" or i in "i" or i in "o" or i in "u":
+                count += 1
+    if find_consonants == True:
+        for i in search:
+           if i in "a" or i in "e" or i in "i" or i in "o" or i in "u" or i in " ":
+               continue
+           else:
+               count += 1
+            
+    return count
 
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
 #
-#Let's try to use our mathematical operators and logical
-#operators together.
+#If your function works correctly, this will originally
+#print 14, then 7.
+
+a_string = "up with the white and gold"
+
+print(count_letters(a_string, True))
+print(count_letters(a_string, False))
+
+
+#Below are some lines of code that will test your function.
+#You can change the value of the variable(s) to test your
+#function with different inputs.
 #
-#Imagine you've been battling a cold. You're deciding whether
-#to take cough syrup or not, and if so, how much to take.
-#
-#time_since_last_dose represents the number of hours since
-#you last took some cough syrup. For every hour it's been,
-#you're allowed to have one dose.
-#
-#If it's nighttime (is_nighttime), then you may double
-#your dose since you won't be taking any until morning.
-#
-#However, if you've taken something cross-reactive
-#(took_something_cross_reactive), then you should not take
-#any cough syrup.
-#
-#Write a program that will print how large a dose of cough
-#syrup to take.
-#
-#HINT: Remember, if you try to multiply a number times a
-#boolean, Python treats False as 0 and True as 1. There are
-#other ways to do this, though.
+#If your function works correctly, this will originally
+#print 14, then 7.
 
+a_string = "up with the white and gold"
 
-#Add your code here!
-
-================================================ 8
-mystery_value_1 = 6
-mystery_value_2 = 3
-
-#You may modify the lines of code above, but don't move them!
-#When you Submit your code, we'll change these lines to
-#assign different values to the variables.
-#
-#Print a sentence describing the values you get when you add,
-#subtract, multiply, and divide the numbers above. The
-#sentence should look like this:
-#
-#The sum is 9, the difference is 3, the product is 18, and the
-#quotient is 2.0.
-#
-#Make sure to include all commas, spaces, and periods exactly
-#as shown -- the only thing that should change based on the
-#values of the variables is the numbers.
-
-
-#Add your code here!
+print(count_letters(a_string, True))
+print(count_letters(a_string, False))
 
 
 
@@ -266,5 +1704,92 @@ mystery_value_2 = 3
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+        
+       
+          
+ 
+       
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+            
+
+
+   
+    
+        
+
+    
+        
+        
+
+
+
+
+       
+
+
+
+
+
+
+    
+
+
+
+
+   
 
 
